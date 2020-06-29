@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:padding="10dp"
+        >
+
+        <com.agrawalsuneet.dotsloader.loaders.AllianceLoader
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:alliance_animDuration="500"
+            app:alliance_distanceMultiplier="4"
+            app:alliance_dotsRadius="10dp"
+            app:alliance_drawOnlyStroke="false"
+            app:alliance_firstDotsColor="#00003E"
+            app:alliance_secondDotsColor="#00003E"
+            app:alliance_strokeWidth="6dp"
+            app:alliance_thirdDotsColor="#00003E"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Loading data ..."
+            android:textColor="#00003E"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
