@@ -1,43 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_gradient_color"
     tools:context=".Activity.RegisterVerificationActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:orientation="vertical" >
-
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="#00003E"
-                app:contentInsetLeft="0dp"
-                app:contentInsetStart="0dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:fontFamily="serif-monospace"
-                    android:text="Verification"
-                    android:textColor="#FFFFFF"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-
-            </androidx.appcompat.widget.Toolbar>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:textColor="#000000"
+                    android:textColor="@color/whiteColor"
                     android:text="Hi "/>
 
                 <TextView
@@ -59,8 +35,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#00003E"
+                    android:textStyle="normal"
+                    android:textColor="@color/whiteColor"
                     android:text="name"/>
 
                 <TextView
@@ -79,7 +55,7 @@
                 android:textSize="14sp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:textColor="#000000"
+                android:textColor="@color/whiteColor"
                 android:text="Thank you for registering on FreelanceBD. We are going to send a verification email to your email address."/>
 
             <LinearLayout
@@ -97,13 +73,13 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#00003E"
+                    android:textColor="@color/whiteColor"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:textSize="14sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="Please Check your email to verify your account and log in freelanceBD"/>
+                    android:text="Check Email to verify account and then log in"/>
 
             <ProgressBar
                 android:layout_marginTop="3dp"
@@ -127,8 +103,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                app:boxStrokeWidth="2dp"
-                app:boxStrokeColor="#00003E"
+                android:textColorHint="#FFFFFF"
+                app:boxBackgroundColor="#80000000"
+                app:boxStrokeColor="#000000"
+                app:boxStrokeWidth="0.5dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -138,7 +116,7 @@
                     android:textColorHint="#000000"
                     android:inputType="textEmailAddress"
                     android:drawablePadding="5dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/whiteColor"
                     android:drawableLeft="@drawable/ic_email_black_24dp"/>
 
 
@@ -150,11 +128,13 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleDrawable="@drawable/visibility_icon_selector"
-                app:passwordToggleTint="#00003E"
+                app:passwordToggleDrawable="@drawable/visibility_selector_white"
+                app:passwordToggleTint="@color/whiteColor"
                 android:layout_marginTop="5dp"
-                app:boxStrokeWidth="2dp"
-                app:boxStrokeColor="#00003E"
+                android:textColorHint="#FFFFFF"
+                app:boxBackgroundColor="#80000000"
+                app:boxStrokeColor="#000000"
+                app:boxStrokeWidth="0.5dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -164,7 +144,7 @@
                     android:textColorHint="#000000"
                     android:inputType="textPassword"
                     android:drawablePadding="5dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/whiteColor"
                     android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
                     android:drawableStart="@drawable/ic_vpn_key_black_24dp"/>
 
@@ -173,8 +153,8 @@
             <Button
                 android:id="@+id/logInBtn"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@drawable/log_in_button_background"
+                android:layout_height="40dp"
+                android:background="@drawable/sign_in_button_background"
                 android:textAllCaps="true"
                 android:layout_marginTop="10dp"
                 android:textColor="#FFFFFF"
@@ -196,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:text="By logging, you are agree with our"
                         android:textSize="14sp"
-                        android:textColor="#000000"/>
+                        android:textColor="@color/whiteColor"/>
 
                     <TextView
                         android:id="@+id/termsOfServiceTV"
@@ -204,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:text="Terms of Service"
                         android:textSize="14sp"
-                        android:textColor="#00003E"
+                        android:textColor="@color/whiteColor"
                         android:layout_gravity="center_horizontal"
                         android:textStyle="bold"/>
 
@@ -214,5 +194,5 @@
 
 
         </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

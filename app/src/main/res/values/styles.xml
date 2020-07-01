@@ -20,4 +20,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/whiteColor</item>
+        <item name="android:textColorSecondary">@color/gray</item>
+    </style>
+
 </resources>

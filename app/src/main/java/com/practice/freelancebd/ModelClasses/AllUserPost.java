@@ -2,10 +2,31 @@ package com.practice.freelancebd.ModelClasses;
 
 public class AllUserPost {
 
-    private String fullName, date, time,title, budget, duration, status,profileImage;
+    private String userName;
+    private String date;
+    private String time;
+    private String title;
+    private String budget;
+    private String duration;
+    private String status;
+    private String profileImage;
 
-    public String getFullName() {
-        return fullName;
+    public AllUserPost() {
+    }
+
+    public AllUserPost(String userName, String date, String time, String title, String budget, String duration, String status, String profileImage) {
+        this.userName = userName;
+        this.date = date;
+        this.time = time;
+        this.title = title;
+        this.budget = budget;
+        this.duration = duration;
+        this.status = status;
+        this.profileImage = profileImage;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getDate() {
@@ -24,38 +45,6 @@ public class AllUserPost {
         return budget;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setBudget(String budget) {
-        this.budget = budget;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
-
     public String getDuration() {
         return duration;
     }
@@ -66,19 +55,5 @@ public class AllUserPost {
 
     public String getProfileImage() {
         return profileImage;
-    }
-
-    public AllUserPost(String fullName, String date, String time, String title, String budget, String duration, String status, String profileImage) {
-        this.fullName = fullName;
-        this.date = date;
-        this.time = time;
-        this.title = title;
-        this.budget = budget;
-        this.duration = duration;
-        this.status = status;
-        this.profileImage = profileImage;
-    }
-
-    public AllUserPost() {
     }
 }

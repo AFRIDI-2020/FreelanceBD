@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,433 +7,314 @@
     android:orientation="vertical"
     tools:context=".Activity.AboutUserProfile">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="270dp">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="@drawable/app_gradient_color"
+            app:layout_constraintBottom_toTopOf="@+id/waveView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/waveView"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_wave4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/add_profile_photo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/waveView"
+            app:layout_constraintStart_toStartOf="@+id/waveView"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_edit_black_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/circleImageView"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.116" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp">
 
-        <androidx.cardview.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="2dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="#00003E">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profilePhoto"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginTop="48dp"
-                    android:src="@drawable/add_profile_photo"
-                    app:civ_border_color="#000000"
-                    app:civ_border_width="1dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/cameraImagePicker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
-                    android:backgroundTint="#FFFFFF"
-                    android:elevation="4dp"
-                    android:src="@drawable/ic_photo_camera_black_24dp"
-                    app:fabSize="mini"
-                    app:layout_constraintEnd_toEndOf="@+id/profilePhoto"
-                    app:layout_constraintTop_toTopOf="@+id/profilePhoto" />
-
-                <TextView
-                    android:id="@+id/usernameTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:padding="5dp"
-                    android:text="Username"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="normal"
-                    app:layout_constraintEnd_toEndOf="@+id/profilePhoto"
-                    app:layout_constraintStart_toStartOf="@+id/profilePhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/profilePhoto" />
-
-                <Button
-                    android:id="@+id/logOutBtn"
-                    android:layout_width="80dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/log_out_button_background"
-                    android:text="Log out"
-                    android:elevation="5dp"
-                    android:textColor="#00003E"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.829"
-                    app:layout_constraintStart_toEndOf="@+id/usernameTV" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="2dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:padding="5dp"
-                        android:text="Full name"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
-
-
-                    <ImageView
-                        android:id="@+id/editIcon"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_edit_black_24dp" />
-
-
-                </LinearLayout>
-
+                    android:text="UserName"
+                    android:textSize="24sp"
+                    android:textColor="#0f2027"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/fullNameTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:text=""
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:visibility="visible" />
-
-                <EditText
-                    android:id="@+id/fullNameET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="you full name"
-                    android:inputType="text"
-                    android:textSize="14sp"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="#cdcdcd" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Sex"
-                    android:textColor="#000000"
+                    android:text="Android Developer"
                     android:textSize="16sp"
-                    android:textStyle="normal" />
+                    android:textColor="#0f2027"
+                    android:gravity="center_horizontal" />
 
                 <TextView
-                    android:id="@+id/sexTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:text=""
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:visibility="visible" />
-
-                <AutoCompleteTextView
-                    android:id="@+id/sexET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Male or female or third gender"
-                    android:inputType="text"
-                    android:textSize="14sp"
-                    android:visibility="gone" />
+                    android:text="I am an android developer. I have experience of 6 month. I am a student of Dhaka City college."
+                    android:textSize="12sp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:textColor="#0f2027"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_horizontal"
+                    />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="#cdcdcd" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Occupation"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/occupationTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:text=""
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:visibility="visible" />
-
-                <EditText
-                    android:id="@+id/occupationET"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Your occupation"
-                    android:inputType="text"
-                    android:textSize="14sp"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="#cdcdcd" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:padding="5dp"
-                        android:text="Mobile"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    >
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
 
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switchButton"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:textOff="Public"
-                            android:textOn="Private"
-                            android:textSize="12sp"
-                            android:textStyle="normal"
-                            android:thumb="@drawable/switch_thumb"
-                            app:showText="true"
-                            app:switchTextAppearance="@style/MyStyle"
-                            app:thumbTextPadding="0dp"
-                            app:track="@drawable/switch_track" />
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0"
+                                        android:layout_gravity="center_horizontal"
+                                        android:textStyle="bold"
+                                        android:textSize="24sp"
+                                        android:textColor="#0f2027"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Completed jobs"/>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_weight="1">
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0"
+                                        android:layout_gravity="center_horizontal"
+                                        android:textStyle="bold"
+                                        android:textSize="24sp"
+                                        android:textColor="#0f2027"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Posted jobs"/>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_weight="1">
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0"
+                                        android:layout_gravity="center_horizontal"
+                                        android:textStyle="bold"
+                                        android:textSize="24sp"
+                                        android:textColor="#0f2027"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Reviews"/>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:src="@drawable/ic_email_dark_green24dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="afridi.mahafuz@gmail.com"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="20dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center_vertical"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:src="@drawable/ic_phone_black_24dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="01716931495"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="20dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center_vertical"/>
+
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Experience"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/darkGreen"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:paddingBottom="5dp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Qualification"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/darkGreen"
+                            android:paddingTop="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingBottom="5dp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"/>
+
+
 
 
                     </LinearLayout>
 
 
-                </LinearLayout>
 
-
-                <TextView
-                    android:id="@+id/mobileTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:text=""
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:visibility="visible" />
-
-                <EditText
-                    android:id="@+id/mobileET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Your mobile no."
-                    android:inputType="phone"
-                    android:textSize="14sp"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="#cdcdcd" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Skills"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/skillsTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:text=""
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:visibility="visible" />
-
-                <EditText
-                    android:id="@+id/skillsET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Make e list of your skills"
-                    android:textSize="14sp"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="#cdcdcd" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Interested category"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="normal" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/interestedCategory1TV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text=""
-                        android:textSize="14sp"
-                        android:textStyle="normal"
-                        android:visibility="visible" />
-
-
-                    <TextView
-                        android:id="@+id/commaTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=", "
-                        android:textSize="14sp"
-                        android:textStyle="normal"
-                        android:visibility="visible" />
-
-
-                    <TextView
-                        android:id="@+id/interestedCategory2TV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="14sp"
-                        android:textStyle="normal"
-                        android:visibility="visible" />
-
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/selectCategorySuggestion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Select any two categories based on your skills"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-
-                    <Spinner
-                        android:id="@+id/categorySpinner1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:visibility="gone" />
-
-                    <Spinner
-                        android:id="@+id/categorySpinner2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:visibility="gone" />
-
-
-                </LinearLayout>
-
-
-                <Button
-                    android:id="@+id/saveBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:background="#00003E"
-                    android:text="save"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:visibility="gone" />
-
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
+        </ScrollView>
 
-        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>
 
 
-</ScrollView>
+</LinearLayout>

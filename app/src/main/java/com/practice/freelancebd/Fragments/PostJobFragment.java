@@ -236,8 +236,8 @@ public class PostJobFragment extends Fragment {
     private void saveToDB(String userName, String profileImage, String category,String status, String title, String budget, String duration, String description, String saveCurrentDate, String saveCurrentTime, String image, String pdf) {
 
         String currentUser = firebaseAuth.getCurrentUser().getUid();
-        userRef = databaseReference.child("users").child(currentUser).child("posted jobs").child( currentUser + " " +postRandomId);
-        postRef = databaseReference.child("posts").child(currentUser + " " +postRandomId);
+        userRef = databaseReference.child("users").child(currentUser).child("postedJobs");
+        postRef = databaseReference.child("posts");
         JobPost jobPost = new JobPost(userName,profileImage,category,status,title,budget,duration,description,saveCurrentDate,saveCurrentTime,image,pdf);
         userRef.push().setValue(jobPost).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
