@@ -17,13 +17,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.practice.freelancebd.Fragments.ProfileFragment;
-import com.practice.freelancebd.GetExperienceAdapter;
-import com.practice.freelancebd.GetQualificationAdapter;
+import com.practice.freelancebd.Custom.GetExperienceAdapter;
+import com.practice.freelancebd.Custom.GetQualificationAdapter;
+import com.practice.freelancebd.Custom.GetSkillAdapter;
 import com.practice.freelancebd.ModelClasses.Experience;
-import com.practice.freelancebd.Qualification;
+import com.practice.freelancebd.ModelClasses.Qualification;
 import com.practice.freelancebd.R;
-import com.practice.freelancebd.Skill;
+import com.practice.freelancebd.ModelClasses.Skill;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;

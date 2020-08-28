@@ -3,7 +3,6 @@ package com.practice.freelancebd.Fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import com.google.firebase.database.ValueEventListener;
 import com.practice.freelancebd.ModelClasses.AllUserPost;
-import com.practice.freelancebd.ModelClasses.AllUserPostAdapter;
+import com.practice.freelancebd.Custom.AllUserPostAdapter;
 import com.practice.freelancebd.R;
 import com.squareup.picasso.Picasso;
 
@@ -37,7 +36,6 @@ public class HomeFragment extends Fragment {
     private RecyclerView recentPostRV;
     private DatabaseReference databaseReference, postRef;
     private AllUserPostAdapter adapter;
-    private CircleImageView loggedInUserImage;
     private FirebaseAuth firebaseAuth;
     private String currentUser;
 
@@ -57,11 +55,10 @@ public class HomeFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         postRef = databaseReference.child("posts");
-        loggedInUserImage = view.findViewById(R.id.loggedInUserImage);
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser().getUid();
 
-        getLoggedInUserImageFromDB();
+
 
 
         recentPostRV = view.findViewById(R.id.recentPostRV);
@@ -82,28 +79,6 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void getLoggedInUserImageFromDB() {
-
-        DatabaseReference userRef = databaseReference.child("users").child(currentUser);
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()) {
-                    if (dataSnapshot.hasChild("profile image")) {
-
-                        String image = dataSnapshot.child("profile image").getValue().toString();
-                        Picasso.get().load(image).into(loggedInUserImage);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     @Override
     public void onStart() {

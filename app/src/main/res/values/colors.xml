@@ -8,4 +8,7 @@
     <color name="whiteColor">#FFFFFF</color>
     <color name="gray">#D6CCCC</color>
     <color name="darkGreen">#0f2027</color>
+    <color name="green">#2c5364</color>
+    <color name="black">#000000</color>
+    <color name="post_job_theme">#e5e9e6</color>
 </resources>

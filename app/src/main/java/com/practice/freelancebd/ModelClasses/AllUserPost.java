@@ -1,40 +1,19 @@
 package com.practice.freelancebd.ModelClasses;
 
 public class AllUserPost {
-
-    private String userName;
-    private String date;
-    private String time;
     private String title;
     private String budget;
-    private String duration;
-    private String status;
-    private String profileImage;
+    private String employerName;
+    private String postStatus;
 
     public AllUserPost() {
     }
 
-    public AllUserPost(String userName, String date, String time, String title, String budget, String duration, String status, String profileImage) {
-        this.userName = userName;
-        this.date = date;
-        this.time = time;
+    public AllUserPost(String title, String budget, String employerName, String postStatus) {
         this.title = title;
         this.budget = budget;
-        this.duration = duration;
-        this.status = status;
-        this.profileImage = profileImage;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getTime() {
-        return time;
+        this.employerName = employerName;
+        this.postStatus = postStatus;
     }
 
     public String getTitle() {
@@ -45,15 +24,11 @@ public class AllUserPost {
         return budget;
     }
 
-    public String getDuration() {
-        return duration;
+    public String getEmployerName() {
+        return employerName;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
+    public String getPostStatus() {
+        return postStatus;
     }
 }

@@ -1,170 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="4dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="4dp"
+    android:background="#e5e9e6">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
-        android:elevation="5dp">
+        android:elevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
             android:orientation="vertical"
-            android:background="@drawable/textview_bg"
-            android:padding="5dp">
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="A Tshirt should be designed"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="posted by "
+                    android:textSize="14sp" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileImageIV"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/add_profile_photo" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="4dp"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:id="@+id/userNameTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="User Name"
-                        android:textColor="#2c5364"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="posted on: "
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/dateTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="4dp"
-                            android:text="date"
-                            android:textColor="#2c5364"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/timeTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:text="time"
-                            android:textColor="#2c5364"
-                            android:textSize="12sp" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/usernameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="User name"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/jobTitleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="job title"
-                android:padding="2dp"
-                android:textStyle="bold"
-                android:textColor="#2c5364"
-                android:textSize="14sp"
-                android:textAllCaps="true"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:padding="6dp"
                 android:orientation="horizontal"
-                android:weightSum="6"
-                android:padding="2dp">
-
+                android:background="@color/post_job_theme">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Budget:"
-                    android:textColor="#2c5364"
-                    android:textSize="12sp" />
+                    android:textSize="14sp"
+                    android:text="Tk. "
+                    android:textColor="@color/black"
+                    />
 
                 <TextView
                     android:id="@+id/budgetTextView"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="200Tk."
-                    android:textSize="12sp" />
+                    android:textSize="14sp"
+                    android:text="1500"
+                    android:textColor="@color/black"
+                    />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Duration:"
-                    android:textColor="#2c5364"
-                    android:textSize="12sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/durationTextView"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="48hours"
-                    android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Status: "
-                    android:textColor="#2c5364"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/postStatusTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="open"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/green"
+                        android:layout_marginRight="10dp"
+                        />
 
-                <TextView
-                    android:id="@+id/statusTextView"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="open"
-                    android:textSize="12sp" />
+                </RelativeLayout>
+
+
 
             </LinearLayout>
-
 
 
         </LinearLayout>
 
-
     </androidx.cardview.widget.CardView>
 
-
-
-</RelativeLayout>
+</LinearLayout>
