@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.practice.freelancebd.Activity.AboutUserProfile;
+import com.practice.freelancebd.MyPostActivity;
 import com.practice.freelancebd.R;
 
 
@@ -21,7 +22,7 @@ import com.practice.freelancebd.R;
 public class ProfileFragment extends Fragment {
 
     private CardView userAboutCardView, createLeafletCardView, myLeafletsCardView, transactionsCardView,
-            myPostsCardview;
+            myPostsCardview, ordersCardView;
 
 
     public ProfileFragment() {
@@ -40,7 +41,7 @@ public class ProfileFragment extends Fragment {
         myLeafletsCardView = view.findViewById(R.id.myLeafletCardView);
         transactionsCardView = view.findViewById(R.id.transactionCardView);
         myPostsCardview = view.findViewById(R.id.myPostCardView);
-
+        ordersCardView = view.findViewById(R.id.ordersCardView);
 
 
         userAboutCardView.setOnClickListener(new View.OnClickListener() {
@@ -50,10 +51,16 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        myPostsCardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MyPostActivity.class));
+            }
+        });
+
 
         return view;
     }
-
 
 
 }

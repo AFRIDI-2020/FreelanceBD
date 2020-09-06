@@ -21,8 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.practice.freelancebd.Fragments.HomeFragment;
-import com.practice.freelancebd.Post;
+import com.practice.freelancebd.ModelClasses.Post;
 import com.practice.freelancebd.R;
 
 import java.util.ArrayList;
