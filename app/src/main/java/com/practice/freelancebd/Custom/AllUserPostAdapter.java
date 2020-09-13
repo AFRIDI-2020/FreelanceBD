@@ -1,5 +1,6 @@
 package com.practice.freelancebd.Custom;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.practice.freelancebd.Activity.ClickPostActivity;
+import com.practice.freelancebd.Activity.HomeActivity;
+import com.practice.freelancebd.Fragments.HomeFragment;
 import com.practice.freelancebd.ModelClasses.AllUserPost;
 import com.practice.freelancebd.R;
 import com.squareup.picasso.Picasso;
@@ -38,10 +42,24 @@ public class AllUserPostAdapter extends FirebaseRecyclerAdapter<AllUserPost, All
 
     @Override
     protected void onBindViewHolder(@NonNull final AllUserPostViewHolder holder, int position, @NonNull AllUserPost model) {
+
+        final String postKey = getRef(position).getKey();
+
         holder.titleTextView.setText(model.getTitle());
         holder.budgetTextView.setText(model.getBudget());
         holder.usernameTextView.setText(model.getEmployerName());
         holder.postStatusTextView.setText(model.getPostStatus());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(),ClickPostActivity.class);
+                intent.putExtra("postKey",postKey);
+                v.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @NonNull

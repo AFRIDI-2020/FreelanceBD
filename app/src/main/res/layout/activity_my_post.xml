@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#e5e9e6"
-    tools:context=".MyPostActivity">
+    tools:context=".Activity.MyPostActivity">
 
     <TextView
         android:layout_width="wrap_content"

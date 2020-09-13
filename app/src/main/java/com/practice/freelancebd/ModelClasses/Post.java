@@ -1,6 +1,7 @@
 package com.practice.freelancebd.ModelClasses;
 
 public class Post {
+    private String profileImageLink;
     private String employerName;
     private String type;
     private String title;
@@ -14,7 +15,8 @@ public class Post {
     public Post() {
     }
 
-    public Post(String employerName, String type, String title, String postStatus, String budget, String applyLastDay, String applyLastMonth, String applyLastYear, String description) {
+    public Post(String profileImageLink, String employerName, String type, String title, String postStatus, String budget, String applyLastDay, String applyLastMonth, String applyLastYear, String description) {
+        this.profileImageLink = profileImageLink;
         this.employerName = employerName;
         this.type = type;
         this.title = title;
@@ -24,6 +26,10 @@ public class Post {
         this.applyLastMonth = applyLastMonth;
         this.applyLastYear = applyLastYear;
         this.description = description;
+    }
+
+    public String getProfileImageLink() {
+        return profileImageLink;
     }
 
     public String getEmployerName() {

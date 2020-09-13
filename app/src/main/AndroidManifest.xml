@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustPan">
-        <activity android:name=".MyPostActivity"></activity>
+        <activity android:name=".Activity.ClickPostActivity"></activity>
+        <activity android:name=".Activity.MyPostActivity" />
         <activity android:name=".Activity.PostJobActivity" />
         <activity android:name=".Activity.EditAboutUserActivity" />
         <activity android:name=".Activity.FrontActivity" />

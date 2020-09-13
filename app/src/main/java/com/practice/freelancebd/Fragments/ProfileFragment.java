@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.practice.freelancebd.Activity.AboutUserProfile;
-import com.practice.freelancebd.MyPostActivity;
+import com.practice.freelancebd.Activity.MyPostActivity;
 import com.practice.freelancebd.R;
 
 

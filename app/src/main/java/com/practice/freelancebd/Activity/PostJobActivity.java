@@ -40,7 +40,7 @@ public class PostJobActivity extends AppCompatActivity {
     private TextView postTypeTV;
     private EditText titleET, budgetET, descriptionET;
     private String type, title, budget, description, postStatus, applyLastMonth, applyLastDay, applyLastYear;
-    private String currentUser,employerName;
+    private String currentUser,employerName,profileImageLink;
     private Button postJobBtn;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -54,6 +54,8 @@ public class PostJobActivity extends AppCompatActivity {
 
         getUsername();
 
+        getProfileImage();
+
         setPostType();
 
         setStatusSpinner();
@@ -62,6 +64,22 @@ public class PostJobActivity extends AppCompatActivity {
         setYearSpinner();
 
 
+    }
+
+    private void getProfileImage() {
+        databaseReference.child("users").child(currentUser).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                profileImageLink = dataSnapshot.child("profileImageLink").getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
@@ -182,7 +200,7 @@ public class PostJobActivity extends AppCompatActivity {
     }
 
     private void sendPostToDatabase() {
-        databaseReference.child("posts").push().setValue(new Post(employerName,type,title,postStatus,budget,applyLastDay,applyLastMonth,applyLastYear,description))
+        databaseReference.child("posts").push().setValue(new Post(profileImageLink,employerName,type,title,postStatus,budget,applyLastDay,applyLastMonth,applyLastYear,description))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -196,7 +214,7 @@ public class PostJobActivity extends AppCompatActivity {
                     }
                 });
 
-        databaseReference.child("users").child(currentUser).child("postedJobs").push().setValue(new Post(employerName,type,title,postStatus,budget,applyLastDay,applyLastMonth,applyLastYear,description))
+        databaseReference.child("users").child(currentUser).child("postedJobs").push().setValue(new Post(profileImageLink,employerName,type,title,postStatus,budget,applyLastDay,applyLastMonth,applyLastYear,description))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
