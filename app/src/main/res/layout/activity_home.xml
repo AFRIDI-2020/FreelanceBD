@@ -36,22 +36,6 @@
                 android:visibility="visible" />
 
 
-            <AutoCompleteTextView
-                android:id="@+id/searchACTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:layout_gravity="center_vertical"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:paddingLeft="10dp"
-                android:background="@drawable/search_edit_text_bg"
-                android:hint="Search"
-                android:textColor="@color/whiteColor"
-                android:textColorHint="#FFFFFF"
-                android:textSize="14sp"
-                android:visibility="gone" />
-
 
         </LinearLayout>
 

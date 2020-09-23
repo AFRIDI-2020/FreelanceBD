@@ -1,12 +1,14 @@
 package com.practice.freelancebd.Fragments;
 
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +54,22 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        View loading = LayoutInflater.from(getActivity()).inflate(R.layout.firebase_data_loading_progress_dialog,null);
+        builder.setView(loading);
+        builder.setTitle(null);
+        builder.setCancelable(false);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        },4000);
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         postRef = databaseReference.child("posts");
@@ -67,6 +85,8 @@ public class HomeFragment extends Fragment {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         recentPostRV.setLayoutManager(linearLayoutManager);
+
+
 
         FirebaseRecyclerOptions<AllUserPost> options =
                 new FirebaseRecyclerOptions.Builder<AllUserPost>()

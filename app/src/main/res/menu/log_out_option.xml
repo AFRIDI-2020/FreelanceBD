@@ -2,18 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group
-        android:id="@+id/searchGrp">
 
-        <item android:id="@+id/search"
-            android:icon="@drawable/ic_search_black_24dp"
-            android:title="search"
-            app:showAsAction="always"/>
-
-    </group>
-
-
-    <item android:id="@+id/logOut"
-        android:title="Sign out"/>
+    <item
+        android:id="@+id/logOut"
+        android:title="Sign out" />
 
 </menu>

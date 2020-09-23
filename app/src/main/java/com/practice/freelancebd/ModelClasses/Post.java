@@ -11,11 +11,12 @@ public class Post {
     private String applyLastMonth;
     private String applyLastYear;
     private String description;
+    private String userID;
 
     public Post() {
     }
 
-    public Post(String profileImageLink, String employerName, String type, String title, String postStatus, String budget, String applyLastDay, String applyLastMonth, String applyLastYear, String description) {
+    public Post(String profileImageLink, String employerName, String type, String title, String postStatus, String budget, String applyLastDay, String applyLastMonth, String applyLastYear, String description, String userID) {
         this.profileImageLink = profileImageLink;
         this.employerName = employerName;
         this.type = type;
@@ -26,7 +27,9 @@ public class Post {
         this.applyLastMonth = applyLastMonth;
         this.applyLastYear = applyLastYear;
         this.description = description;
+        this.userID = userID;
     }
+
 
     public String getProfileImageLink() {
         return profileImageLink;
@@ -66,6 +69,10 @@ public class Post {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getUserID() {
+        return userID;
     }
 }
 

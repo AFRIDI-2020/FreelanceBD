@@ -40,7 +40,7 @@ public class PostJobActivity extends AppCompatActivity {
     private TextView postTypeTV;
     private EditText titleET, budgetET, descriptionET;
     private String type, title, budget, description, postStatus, applyLastMonth, applyLastDay, applyLastYear;
-    private String currentUser,employerName,profileImageLink;
+    private String userID,employerName,profileImageLink,postKey;
     private Button postJobBtn;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -56,6 +56,8 @@ public class PostJobActivity extends AppCompatActivity {
 
         getProfileImage();
 
+
+
         setPostType();
 
         setStatusSpinner();
@@ -66,22 +68,8 @@ public class PostJobActivity extends AppCompatActivity {
 
     }
 
-    private void getProfileImage() {
-        databaseReference.child("users").child(currentUser).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                profileImageLink = dataSnapshot.child("profileImageLink").getValue().toString();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
+    //user input validity check
 
     private boolean budgetValidity() {
         budget = budgetET.getText().toString();
@@ -93,7 +81,6 @@ public class PostJobActivity extends AppCompatActivity {
             return true;
         }
     }
-
     private boolean descriptionValidity() {
         description = descriptionET.getText().toString();
         if (description.isEmpty()) {
@@ -104,7 +91,6 @@ public class PostJobActivity extends AppCompatActivity {
             return true;
         }
     }
-
     private boolean titleValidity() {
         title = titleET.getText().toString();
         if (title.isEmpty()) {
@@ -119,36 +105,35 @@ public class PostJobActivity extends AppCompatActivity {
         }
     }
 
+    //UI setup
 
     private void setYearSpinner() {
         yearList = new ArrayList<>(Arrays.asList(year));
         yearSpinnerAdapter = new ArrayAdapter<>(this, R.layout.status_spinner_style, yearList);
         yearSpinner.setAdapter(yearSpinnerAdapter);
     }
-
     private void setMonthSpinner() {
         monthList = new ArrayList<>(Arrays.asList(month));
         monthSpinnerAdapter = new ArrayAdapter<>(this, R.layout.status_spinner_style, monthList);
         monthSpinner.setAdapter(monthSpinnerAdapter);
     }
-
     private void setDaySpinner() {
         dayList = new ArrayList<>(Arrays.asList(day));
         daySpinnerAdapter = new ArrayAdapter<>(this, R.layout.status_spinner_style, dayList);
         daySpinner.setAdapter(daySpinnerAdapter);
     }
-
     private void setPostType() {
         Intent intent = getIntent();
         type = intent.getStringExtra("category");
         postTypeTV.setText(type);
     }
-
     private void setStatusSpinner() {
         statusList = new ArrayList<>(Arrays.asList(status));
         statusAdapter = new ArrayAdapter<>(this, R.layout.status_spinner_style, statusList);
         statusSpinner.setAdapter(statusAdapter);
     }
+
+    //initiating UI items
 
     private void init() {
         statusSpinner = findViewById(R.id.statusSpinner);
@@ -163,8 +148,46 @@ public class PostJobActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        currentUser = firebaseAuth.getCurrentUser().getUid();
+        userID = firebaseAuth.getCurrentUser().getUid();
     }
+
+    //getting data from database
+
+    private void getUsername() {
+        databaseReference.child("users").child(userID).child("about").child("personalInfo").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    employerName = dataSnapshot.child("name").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    private void getProfileImage() {
+        databaseReference.child("users").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    profileImageLink = dataSnapshot.child("profileImageLink").getValue().toString();
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    //sending data to database
 
     public void postTheJob(View view) {
         if(!titleValidity() | !budgetValidity() | !descriptionValidity()){
@@ -182,29 +205,16 @@ public class PostJobActivity extends AppCompatActivity {
             sendPostToDatabase();
         }
     }
-
-    private void getUsername() {
-        databaseReference.child("users").child(currentUser).child("about").child("personalInfo").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    employerName = dataSnapshot.child("name").getValue().toString();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
     private void sendPostToDatabase() {
-        databaseReference.child("posts").push().setValue(new Post(profileImageLink,employerName,type,title,postStatus,budget,applyLastDay,applyLastMonth,applyLastYear,description))
+
+        postKey = databaseReference.child("posts").push().getKey();
+
+        databaseReference.child("posts").child(postKey).setValue(new Post(profileImageLink,employerName,type,title,postStatus,budget,applyLastDay,applyLastMonth,applyLastYear,description,userID))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
+
                             Intent intent = new Intent(PostJobActivity.this,HomeActivity.class);
                             startActivity(intent);
                         }
@@ -214,7 +224,7 @@ public class PostJobActivity extends AppCompatActivity {
                     }
                 });
 
-        databaseReference.child("users").child(currentUser).child("postedJobs").push().setValue(new Post(profileImageLink,employerName,type,title,postStatus,budget,applyLastDay,applyLastMonth,applyLastYear,description))
+        databaseReference.child("users").child(userID).child("postedJobs").child(postKey).setValue(new Post(profileImageLink,employerName,type,title,postStatus,budget,applyLastDay,applyLastMonth,applyLastYear,description,userID))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

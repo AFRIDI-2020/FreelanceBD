@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void register(final String user_name, final String user_email, String user_password) {
+    private void register(final String username, final String email, String password) {
 
 
 
@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                             else
                             {
                                 progressDialog.dismiss();
-                                Toast.makeText(RegisterActivity.this, "Something went wrong! Check connection or try again later!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -128,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else
                 {
                     progressDialog.dismiss();
-                    Toast.makeText(RegisterActivity.this, "something went wrong! Try again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#e5e9e6"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.HomeFragment">
 
 
@@ -18,13 +18,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Find works"
-            android:paddingRight="10dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textSize="18sp"
-            android:textColor="#2c5364"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/darkGreen"
             android:textStyle="bold"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recentPostRV"
@@ -32,8 +33,8 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:padding="2dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            />
 
 
 

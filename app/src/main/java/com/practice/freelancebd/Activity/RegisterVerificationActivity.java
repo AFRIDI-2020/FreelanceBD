@@ -98,6 +98,8 @@ public class RegisterVerificationActivity extends AppCompatActivity {
 
                     if(firebaseAuth.getCurrentUser().isEmailVerified()){
 
+
+
                         Intent intent = new Intent(RegisterVerificationActivity.this,HomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);

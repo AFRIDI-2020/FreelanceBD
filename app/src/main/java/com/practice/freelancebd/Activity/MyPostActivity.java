@@ -47,6 +47,8 @@ public class MyPostActivity extends AppCompatActivity {
 
         allMyPostAdapter = new AllMyPostAdapter(options);
         myPostRecyclerView.setAdapter(allMyPostAdapter);
+
+
     }
 
     private void init() {
