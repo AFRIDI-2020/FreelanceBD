@@ -12,4 +12,7 @@
     <color name="black">#000000</color>
     <color name="post_job_theme">#e5e9e6</color>
     <color name="red">#E60808</color>
+    <color name="light_green">#65FF01</color>
+    <color name="ashGray">#B2BEB5</color>
+    <color name="CambridgeBlue">#A3C1AD</color>
 </resources>

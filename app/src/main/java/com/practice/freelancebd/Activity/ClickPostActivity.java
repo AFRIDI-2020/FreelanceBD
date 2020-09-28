@@ -3,6 +3,8 @@ package com.practice.freelancebd.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.practice.freelancebd.Bidder;
+import com.practice.freelancebd.BidderListAdapter;
 import com.practice.freelancebd.ModelClasses.Bid;
 import com.practice.freelancebd.R;
 import com.squareup.picasso.Picasso;
@@ -31,16 +36,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ClickPostActivity extends AppCompatActivity {
 
-    String postKey,title,type,employerName,description,budget,day,month,year,profileImageLink;
-    DatabaseReference databaseReference,bidRef;
+    String postKey, title, type, employerName, description, budget, day, month, year, profileImageLink;
+    DatabaseReference databaseReference, bidRef, currentPostRef;
     private FirebaseAuth firebaseAuth;
-    private TextView userNameTV,jobyTypeTV,titleTV, budgetTV, dayTV, monthTV, yearTV, descriptionTV,numberOfProposals;
+    private TextView userNameTV, jobyTypeTV, titleTV, budgetTV, dayTV, monthTV, yearTV, descriptionTV, numberOfProposals, seeProposalsTV;
     private CircleImageView circleProfileImage;
-    private String currentUser, userID,bidder,bidderProfileImageLink;
+    private String currentUser, userID, bidder, bidderProfileImageLink;
     private ImageView backImageView;
     private LinearLayout bidLayout;
     boolean bidStatus = false;
     int numberOfBid;
+    private BidderListAdapter bidderListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +59,16 @@ public class ClickPostActivity extends AppCompatActivity {
 
         postKey = getIntent().getExtras().get("postKey").toString();
 
+
+        currentPostRef = databaseReference.child("Bids").child(postKey);
+
         getNumberOfBids(postKey);
 
         databaseReference.child("posts").child(postKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     title = dataSnapshot.child("title").getValue().toString();
                     type = dataSnapshot.child("type").getValue().toString();
                     employerName = dataSnapshot.child("employerName").getValue().toString();
@@ -73,10 +82,9 @@ public class ClickPostActivity extends AppCompatActivity {
 
                 }
 
-                if(userID.equals(currentUser)){
+                if (userID.equals(currentUser)) {
                     bidLayout.setVisibility(View.INVISIBLE);
                 }
-
 
 
                 titleTV.setText(title);
@@ -103,23 +111,14 @@ public class ClickPostActivity extends AppCompatActivity {
         getCurrentUserProfileImageLink();
 
 
-
-        backImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ClickPostActivity.this,HomeActivity.class));
-            }
-        });
-
-
         bidLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this);
-                View view = getLayoutInflater().inflate(R.layout.make_a_bid_layout,null);
+                View view = getLayoutInflater().inflate(R.layout.make_a_bid_layout, null);
 
-                final EditText bidAmountET =view.findViewById(R.id.bidAmountET);
+                final EditText bidAmountET = view.findViewById(R.id.bidAmountET);
                 final EditText bidDayET = view.findViewById(R.id.bidDayET);
                 final EditText bidDescriptionET = view.findViewById(R.id.bidDescriptionET);
                 TextView cancelTV = view.findViewById(R.id.cancelTV);
@@ -137,6 +136,22 @@ public class ClickPostActivity extends AppCompatActivity {
                     }
                 });
 
+                bidRef.child(postKey).child(currentUser).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            bidAmountET.setText(dataSnapshot.child("bidAmount").getValue().toString());
+                            bidDayET.setText(dataSnapshot.child("bidDay").getValue().toString());
+                            bidDescriptionET.setText(dataSnapshot.child("bidDescription").getValue().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 bidTV.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -147,11 +162,11 @@ public class ClickPostActivity extends AppCompatActivity {
                         String bidDay = bidDayET.getText().toString();
                         String bidDescription = bidDescriptionET.getText().toString();
 
-                        bidRef.child(postKey).child(currentUser).setValue(new Bid(bidAmount,bidDay,bidDescription,"true",bidder,bidderProfileImageLink)).addOnCompleteListener(
+                        bidRef.child(postKey).child(currentUser).setValue(new Bid(bidAmount, bidDay, bidDescription, "true", bidder, bidderProfileImageLink)).addOnCompleteListener(
                                 new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
+                                        if (task.isSuccessful()) {
                                             Toast.makeText(ClickPostActivity.this, "You made a bid on this job!", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
                                         }
@@ -166,9 +181,43 @@ public class ClickPostActivity extends AppCompatActivity {
             }
         });
 
+        seeProposalsTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ClickPostActivity.this);
+                View view = getLayoutInflater().inflate(R.layout.bidders_list, null);
+                RecyclerView bidderListRV = view.findViewById(R.id.bidderList);
+                builder.setView(view);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+                bidderListRV.setLayoutManager(new LinearLayoutManager(ClickPostActivity.this));
+
+                FirebaseRecyclerOptions<Bidder> options =
+                        new FirebaseRecyclerOptions.Builder<Bidder>()
+                                .setQuery(currentPostRef, Bidder.class)
+                                .build();
+
+                bidderListAdapter = new BidderListAdapter(options);
+                bidderListRV.setAdapter(bidderListAdapter);
+                bidderListAdapter.startListening();
 
 
+            }
+        });
+
+
+        backImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ClickPostActivity.this, HomeActivity.class));
+            }
+        });
+
+
+//mainFunction
     }
+
 
     private void getNumberOfBids(final String postKey) {
 
@@ -177,11 +226,10 @@ public class ClickPostActivity extends AppCompatActivity {
         bidRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(postKey).exists()){
-                    numberOfBid = (int)dataSnapshot.child(postKey).getChildrenCount();
+                if (dataSnapshot.child(postKey).exists()) {
+                    numberOfBid = (int) dataSnapshot.child(postKey).getChildrenCount();
                     numberOfProposals.setText(Integer.toString(numberOfBid));
-                }
-                else{
+                } else {
                     numberOfProposals.setText("0");
                 }
             }
@@ -198,7 +246,7 @@ public class ClickPostActivity extends AppCompatActivity {
         databaseReference.child("users").child(currentUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     bidderProfileImageLink = dataSnapshot.child("profileImageLink").getValue().toString();
                 }
             }
@@ -215,7 +263,7 @@ public class ClickPostActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
+                        if (dataSnapshot.exists()) {
                             bidder = dataSnapshot.child("name").getValue().toString();
                         }
                     }
@@ -235,19 +283,21 @@ public class ClickPostActivity extends AppCompatActivity {
         budgetTV = findViewById(R.id.budgetTV);
         dayTV = findViewById(R.id.dayTV);
         monthTV = findViewById(R.id.monthTV);
-        yearTV=findViewById(R.id.yearTV);
+        yearTV = findViewById(R.id.yearTV);
         descriptionTV = findViewById(R.id.descriptionTV);
         circleProfileImage = findViewById(R.id.circularProfileImage);
         firebaseAuth = FirebaseAuth.getInstance();
-        currentUser= firebaseAuth.getCurrentUser().getUid();
+        currentUser = firebaseAuth.getCurrentUser().getUid();
         bidLayout = findViewById(R.id.bidLayout);
         backImageView = findViewById(R.id.backImageView);
         numberOfProposals = findViewById(R.id.numberOfProposals);
+        seeProposalsTV = findViewById(R.id.seeProposalsTV);
     }
 
 
     @Override
     public void onBackPressed() {
-
     }
+
+
 }

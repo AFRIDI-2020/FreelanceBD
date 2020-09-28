@@ -137,7 +137,7 @@ public class AllMyPostAdapter extends FirebaseRecyclerAdapter<AllMyClass,AllMyPo
 
                         DatabaseReference postRef = databaseReference.child("posts").child(postKey);
 
-                        userPostRef.child("title").setValue(titleET.getText().toString());
+                        userPostRef.child("title").setValue(titleET.getText().toString().toUpperCase());
                         userPostRef.child("budget").setValue(budgetET.getText().toString());
                         userPostRef.child("postStatus").setValue(statusET.getText().toString());
                         userPostRef.child("description").setValue(descriptionET.getText().toString());

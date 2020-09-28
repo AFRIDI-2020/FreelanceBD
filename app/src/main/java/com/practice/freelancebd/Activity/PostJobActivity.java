@@ -194,7 +194,7 @@ public class PostJobActivity extends AppCompatActivity {
             return;
         }
         else {
-            title = titleET.getText().toString();
+            title = titleET.getText().toString().toUpperCase();
             postStatus = statusSpinner.getSelectedItem().toString();
             budget = budgetET.getText().toString();
             applyLastDay = daySpinner.getSelectedItem().toString();
