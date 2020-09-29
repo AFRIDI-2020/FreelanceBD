@@ -1,5 +1,6 @@
 package com.practice.freelancebd.Activity;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,13 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.practice.freelancebd.Custom.GetExperienceAdapter;
-import com.practice.freelancebd.Custom.GetQualificationAdapter;
-import com.practice.freelancebd.Custom.GetSkillAdapter;
-import com.practice.freelancebd.ModelClasses.Experience;
-import com.practice.freelancebd.ModelClasses.Qualification;
 import com.practice.freelancebd.R;
-import com.practice.freelancebd.ModelClasses.Skill;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,16 +26,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AboutUserProfile extends AppCompatActivity {
 
-    private TextView editTextView,nameTV,professionalTagTV,descriptionTV, emailTV, mobileTV;
-    private CircleImageView circleImageView;
-    private ImageView backImageView;
-    private DatabaseReference databaseReference,experienceRef, qualificationRef, skillRef;
+
+    private ImageView editIV,profileImage,backImageView;
+    private TextView fullNameTV, professionalTagTV, aboutUserTV;
+    private DatabaseReference databaseReference,userProfileRef;
     private FirebaseAuth firebaseAuth;
-    private String currentUser;
-    private RecyclerView showExperienceRV, showQualificationRV, showSkillRV;
-    private GetExperienceAdapter getExperienceAdapter;
-    private GetQualificationAdapter getQualificationAdapter;
-    private GetSkillAdapter getSkillAdapter;
+    String currentUser;
+    private AlertDialog loadingAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +40,14 @@ public class AboutUserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_about_user_profile);
 
 
+
         init();
-
-        getDataFromDataBase();
-
-        editTextView.setOnClickListener(new View.OnClickListener() {
+        startLoadingAlertDialog();
+        getDataFromDatabase();
+        editIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(new Intent(AboutUserProfile.this, EditAboutUserActivity.class));
+                goTOEditProfile();
             }
         });
 
@@ -67,144 +58,64 @@ public class AboutUserProfile extends AppCompatActivity {
             }
         });
 
+
     }
 
-    private void getDataFromDataBase() {
+    private void startLoadingAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AboutUserProfile.this);
+        View view = getLayoutInflater().inflate(R.layout.firebase_data_loading_progress_dialog,null);
+        builder.setView(view);
+        builder.setCancelable(false);
+        loadingAlertDialog = builder.create();
+        loadingAlertDialog.show();
+    }
 
-        databaseReference.child("users").child(currentUser).child("about").child("personalInfo")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        if(dataSnapshot.exists()){
-
-                            String name = dataSnapshot.child("name").getValue().toString();
-                            String email = dataSnapshot.child("email").getValue().toString();
-                            String description = dataSnapshot.child("description").getValue().toString();
-                            String mobileNo = dataSnapshot.child("mobileNo").getValue().toString();
-                            String professionalTag = dataSnapshot.child("professionalTag").getValue().toString();
-
-
-                            nameTV.setText(name);
-                            emailTV.setText(email);
-                            descriptionTV.setText(description);
-                            mobileTV.setText(mobileNo);
-                            professionalTagTV.setText(professionalTag);
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-        databaseReference.child("users").child(currentUser).addValueEventListener(new ValueEventListener() {
+    private void getDataFromDatabase() {
+        userProfileRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if(dataSnapshot.exists()){
-                    if(dataSnapshot.hasChild("profileImageLink")){
-                        String image = dataSnapshot.child("profileImageLink").getValue().toString();
-                        Picasso.get().load(image).into(circleImageView);
-                    }
-
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String fullName = snapshot.child("fullName").getValue().toString();
+                    fullNameTV.setText(fullName);
+                    String professionalTag = snapshot.child("professionalTag").getValue().toString();
+                    professionalTagTV.setText(professionalTag);
+                    String aboutUser = snapshot.child("aboutUser").getValue().toString();
+                    aboutUserTV.setText(aboutUser);
+                    String profileImageLink = snapshot.child("profileImageLink").getValue().toString();
+                    Picasso.get().load(profileImageLink).into(profileImage);
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
 
-        getExperience();
-
-        getQualification();
-
-        getSkill();
-
+        loadingAlertDialog.dismiss();
     }
 
-    private void getSkill() {
-
-        showSkillRV.setLayoutManager(new LinearLayoutManager(AboutUserProfile.this));
-        skillRef = databaseReference.child("users").child(currentUser).child("about").child("skill");
-
-        FirebaseRecyclerOptions<Skill> option =
-                new FirebaseRecyclerOptions.Builder<Skill>()
-                        .setQuery(skillRef, Skill.class)
-                        .build();
-
-        getSkillAdapter = new GetSkillAdapter(option);
-
-        showSkillRV.setAdapter(getSkillAdapter);
+    private void goTOEditProfile() {
+        startActivity(new Intent(AboutUserProfile.this,EditAboutUserActivity.class));
     }
 
-    private void getQualification() {
-
-        showQualificationRV.setLayoutManager(new LinearLayoutManager(AboutUserProfile.this));
-        qualificationRef = databaseReference.child("users").child(currentUser).child("about").child("qualification");
-
-        FirebaseRecyclerOptions<Qualification> option =
-                new FirebaseRecyclerOptions.Builder<Qualification>()
-                        .setQuery(qualificationRef, Qualification.class)
-                        .build();
-
-        getQualificationAdapter = new GetQualificationAdapter(option);
-        showQualificationRV.setAdapter(getQualificationAdapter);
-    }
-
-    private void getExperience() {
-
-        showExperienceRV.setLayoutManager(new LinearLayoutManager(AboutUserProfile.this));
-        experienceRef = databaseReference.child("users").child(currentUser).child("about").child("experience");
-
-        FirebaseRecyclerOptions<Experience> option =
-                new FirebaseRecyclerOptions.Builder<Experience>()
-                        .setQuery(experienceRef, Experience.class)
-                        .build();
-
-        getExperienceAdapter = new GetExperienceAdapter(option);
-        showExperienceRV.setAdapter(getExperienceAdapter);
-
-        getExperienceAdapter.notifyDataSetChanged();
-    }
 
     private void init() {
 
-        editTextView = findViewById(R.id.editTextView);
-        nameTV = findViewById(R.id.nameTV);
+        editIV = findViewById(R.id.editIV);
+        fullNameTV = findViewById(R.id.fullNameTV);
         professionalTagTV = findViewById(R.id.professionalTagTV);
-        descriptionTV = findViewById(R.id.descriptionTV);
-        emailTV = findViewById(R.id.emailTV);
-        mobileTV = findViewById(R.id.mobileTV);
-        circleImageView = findViewById(R.id.circleImageView);
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        aboutUserTV = findViewById(R.id.aboutUserTV);
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser().getUid();
-        showExperienceRV = findViewById(R.id.showExperienceRV);
-        showQualificationRV = findViewById(R.id.showQualificationRV);
-        showSkillRV = findViewById(R.id.showSkillRV);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        userProfileRef = databaseReference.child("users").child(currentUser).child("userProfile");
+        profileImage = findViewById(R.id.profileImage);
         backImageView = findViewById(R.id.backImageView);
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        getExperienceAdapter.startListening();
-        getQualificationAdapter.startListening();
-        getSkillAdapter.startListening();
-    }
+    public void onBackPressed() {
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        getExperienceAdapter.stopListening();
-        getQualificationAdapter.stopListening();
-        getSkillAdapter.stopListening();
     }
 }

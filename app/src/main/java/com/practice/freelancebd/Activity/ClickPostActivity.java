@@ -243,7 +243,7 @@ public class ClickPostActivity extends AppCompatActivity {
 
     private void getCurrentUserProfileImageLink() {
 
-        databaseReference.child("users").child(currentUser).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("users").child(currentUser).child("userProfile").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -259,12 +259,12 @@ public class ClickPostActivity extends AppCompatActivity {
     }
 
     private void getCurrentUsername() {
-        databaseReference.child("users").child(currentUser).child("about").child("personalInfo")
+        databaseReference.child("users").child(currentUser).child("userProfile")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            bidder = dataSnapshot.child("name").getValue().toString();
+                            bidder = dataSnapshot.child("fullName").getValue().toString();
                         }
                     }
 

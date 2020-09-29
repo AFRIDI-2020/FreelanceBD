@@ -100,7 +100,7 @@ public class RegisterVerificationActivity extends AppCompatActivity {
 
 
 
-                        Intent intent = new Intent(RegisterVerificationActivity.this,HomeActivity.class);
+                        Intent intent = new Intent(RegisterVerificationActivity.this,EditAboutUserActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }

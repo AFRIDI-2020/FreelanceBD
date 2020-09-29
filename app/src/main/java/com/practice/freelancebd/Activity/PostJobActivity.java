@@ -154,11 +154,11 @@ public class PostJobActivity extends AppCompatActivity {
     //getting data from database
 
     private void getUsername() {
-        databaseReference.child("users").child(userID).child("about").child("personalInfo").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("users").child(userID).child("userProfile").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    employerName = dataSnapshot.child("name").getValue().toString();
+                    employerName = dataSnapshot.child("fullName").getValue().toString();
                 }
             }
 
@@ -169,7 +169,7 @@ public class PostJobActivity extends AppCompatActivity {
         });
     }
     private void getProfileImage() {
-        databaseReference.child("users").child(userID).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("users").child(userID).child("userProfile").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){

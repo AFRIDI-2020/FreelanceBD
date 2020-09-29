@@ -11,596 +11,227 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#2c5364"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:background="@drawable/app_gradient_color"
+        android:orientation="horizontal">
 
-        <TextView
+        <ImageView
+            android:id="@+id/backImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Edit profile"
-            android:textColor="@color/whiteColor"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_chevron_left_white_24dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/whiteColor"
+                android:textSize="20sp"
+                android:text="Edit Profile"/>
+
+
+            <TextView
+                android:id="@+id/saveTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/whiteColor"
+                android:layout_marginRight="15dp"
+                android:textSize="18sp"
+                android:text="Save"/>
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp">
-
-                <View
-                    android:id="@+id/view7"
-                    android:layout_width="0dp"
-                    android:layout_height="190dp"
-                    android:background="@drawable/app_gradient_color"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="0dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginRight="30dp"
-                    android:gravity="center"
-                    android:text="Welcome to FreelanceBD. Complete your profile for better experience."
-                    android:textColor="@color/whiteColor"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/ic_weave5"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view7" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageView3"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="31dp"
-                    android:src="@drawable/add_profile_photo"
-                    app:layout_constraintBottom_toBottomOf="@+id/view2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/profileImagePicker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/gray"
-                    android:src="@drawable/ic_photo_camera_black_24dp"
-                    app:fabSize="mini"
-                    app:layout_constraintBottom_toBottomOf="@+id/circleImageView3"
-                    app:layout_constraintEnd_toEndOf="@+id/circleImageView3" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
-                android:id="@+id/weight7Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+
+                <RelativeLayout
+                    android:layout_width="130dp"
+                    android:layout_height="160dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/square_image_frame"
+                    android:padding="3dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person_black_18dp" />
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_gravity="bottom">
 
-                    <LinearLayout
+                    <Button
+                        android:id="@+id/selectPhotoBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="9"
-                            android:text="Personal Info"
-                            android:textColor="@color/darkGreen"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/personalInfoExpandIV"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_expand_more_black_24dp"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/nameLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:weightSum="10"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="2"
-                            android:text="Name"
-                            android:textColor="@android:color/black" />
-
-                        <EditText
-                            android:id="@+id/nameET"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="8"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Name"
-                            android:inputType="text"
-                            android:textCursorDrawable="@null"
-                            android:textSize="12sp"
-                            android:visibility="visible" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/emailLayout"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="2"
-                            android:text="Email"
-                            android:textColor="@android:color/black" />
-
-                        <EditText
-                            android:id="@+id/emailET"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="8"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Email"
-                            android:inputType="textEmailAddress"
-                            android:textCursorDrawable="@null"
-                            android:textSize="12sp"
-                            android:visibility="visible" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/mobileNoLayout"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="2"
-                            android:text="Mobile"
-                            android:textColor="@android:color/black" />
-
-                        <EditText
-                            android:id="@+id/mobileET"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="8"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Mobile"
-                            android:inputType="phone"
-                            android:textCursorDrawable="@null"
-                            android:textSize="12sp"
-                            android:visibility="visible" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/tagLayout"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="2"
-                            android:text="Tag"
-                            android:textColor="@android:color/black" />
-
-                        <EditText
-                            android:id="@+id/professionalTagET"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="8"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Professional tag (Example: Graphics designer)"
-                            android:inputType="text"
-                            android:textCursorDrawable="@null"
-                            android:textSize="12sp"
-                            android:visibility="visible" />
-
-                    </LinearLayout>
+                        android:text="Select photo"
+                        android:onClick="selectPhoto"
+                        android:background="@color/darkGreen"
+                        android:textSize="16sp"
+                        android:textColor="@color/whiteColor"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"/>
 
                     <TextView
-                        android:id="@+id/descriptionLayout"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Description"
-                        android:textColor="@android:color/black" />
-
-                    <LinearLayout
-                        android:id="@+id/descriptionLayoutET"
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <EditText
-                            android:id="@+id/aboutYourselfET"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="10"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Write about yourself and your service"
-                            android:textCursorDrawable="@null"
-                            android:textSize="12sp"
-                            android:visibility="visible" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <Button
-                            android:id="@+id/saveBtn"
-                            android:layout_width="0dp"
-                            android:layout_height="36dp"
-                            android:layout_weight="6"
-                            android:background="@drawable/save_btn"
-                            android:text="save"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:visibility="gone" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="9"
-                            android:text="Experience"
-                            android:textColor="@color/darkGreen"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/experienceExpandIV"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_expand_more_black_24dp"/>
-
-
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/workExperienceET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:backgroundTint="@android:color/black"
-                        android:hint="Describe your work experience"
-                        android:textCursorDrawable="@null"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="4dp"
-                        android:visibility="gone"
-                        android:id="@+id/experienceRV"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <Button
-                            android:id="@+id/saveXpBtn"
-                            android:layout_width="0dp"
-                            android:layout_height="36dp"
-                            android:layout_weight="6"
-                            android:background="@drawable/save_btn"
-                            android:text="save"
-                            android:onClick="saveExperience"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:visibility="gone" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="9"
-                            android:text="Qualification"
-                            android:textColor="@color/darkGreen"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/qualificationExpandIV"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/ic_expand_more_black_24dp"/>
-
-
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/qualificationET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:backgroundTint="@android:color/black"
-                        android:hint="Add qualifications"
-                        android:textCursorDrawable="@null"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/qualificationRV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="4dp"
-                        android:visibility="gone" />
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <Button
-                            android:id="@+id/saveQualificationBtn"
-                            android:layout_width="0dp"
-                            android:layout_height="36dp"
-                            android:layout_weight="6"
-                            android:background="@drawable/save_btn"
-                            android:text="save"
-                            android:onClick="saveQualification"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:visibility="gone" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="9"
-                            android:text="Skill"
-                            android:textColor="@color/darkGreen"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/skillExpandIV"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:src="@drawable/ic_expand_more_black_24dp"/>
-
-
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/skillET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:backgroundTint="@android:color/black"
-                        android:hint="Add your skills"
-                        android:textCursorDrawable="@null"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/skillRV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="4dp"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <Button
-                            android:id="@+id/saveSkillBtn"
-                            android:layout_width="0dp"
-                            android:layout_height="36dp"
-                            android:layout_weight="6"
-                            android:background="@drawable/save_btn"
-                            android:text="save"
-                            android:onClick="saveSkill"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:visibility="gone" />
-
-
-                    </LinearLayout>
-
+                        android:text="Please do not upload image more than 150 KB"/>
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fullNameTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/black"
+                android:layout_marginRight="10dp"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/error_appearance">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fullNameTIET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_person_black_18dp"
+                    android:textCursorDrawable="@null"
+                    android:drawablePadding="5dp"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Professional tag"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/professionalTagTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/error_appearance">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/professionalTagTIET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_label_black"
+                    android:textCursorDrawable="@null"
+                    android:drawablePadding="5dp"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Describe yourself"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Write down a short resume on you. Tell us about your skill, qualification or experience of work."
+                android:layout_marginLeft="10dp"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/aboutUserTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/error_appearance">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/aboutUserTIET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_description_black"
+                    android:drawablePadding="5dp"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
         </LinearLayout>
 
-
     </ScrollView>
+    
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Switch" />
 
 
 </LinearLayout>
