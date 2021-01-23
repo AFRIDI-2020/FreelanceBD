@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:padding="10dp"
-    android:background="@drawable/app_gradient_color">
+    android:padding="@dimen/_12sdp"
+    android:background="@color/sky">
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Uploading image"
+            android:text="Image is getting ready"
             android:textColor="@color/whiteColor"
             android:textSize="20sp"
             android:textStyle="bold" />

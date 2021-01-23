@@ -1,5 +1,6 @@
 package com.practice.freelancebd;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.practice.freelancebd.Activity.PersonsActivity;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,6 +33,7 @@ public class BidderListAdapter extends FirebaseRecyclerAdapter<Bidder,BidderList
         holder.bidderNameTV.setText(model.getBidder());
         holder.bidAmountTV.setText(model.getBidAmount());
         holder.bidDayTV.setText(model.getBidDay());
+        final String bidderId = model.getBidderId();
         String countDay = model.getBidDay();
         int day = Integer.parseInt(countDay);
         if(day>1){
@@ -41,6 +44,15 @@ public class BidderListAdapter extends FirebaseRecyclerAdapter<Bidder,BidderList
         }
         holder.bidDescriptionTV.setText(model.getBidDescription());
         Picasso.get().load(model.getBidderProfileImageLink()).into(holder.bidderProfileImage);
+
+        holder.bidderNameTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), PersonsActivity.class);
+                intent.putExtra("bidderId",bidderId);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @NonNull

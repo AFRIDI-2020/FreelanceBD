@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1419adf9b6a7c6a58c9d335790c207b7/firebase-ui-common-6.3.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1419adf9b6a7c6a58c9d335790c207b7/firebase-ui-common-6.3.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1419adf9b6a7c6a58c9d335790c207b7/firebase-ui-common-6.3.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.firebaseui/firebase-ui-common/6.3.0/59fdb353bba87267a643f298eea1935e48780436/firebase-ui-common-6.3.0-javadoc.jar!/" />

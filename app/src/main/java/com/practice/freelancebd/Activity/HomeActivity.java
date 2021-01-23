@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.practice.freelancebd.Fragments.ChatFragment;
 import com.practice.freelancebd.Fragments.HomeFragment;
 import com.practice.freelancebd.Fragments.NotificationFragment;
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView toolbarTextView;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser runningUser;
 
 
     @Override
@@ -135,5 +137,6 @@ public class HomeActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
     }
+
 
 }

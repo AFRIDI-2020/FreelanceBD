@@ -41,7 +41,7 @@ public class ClickPostActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private TextView userNameTV, jobyTypeTV, titleTV, budgetTV, dayTV, monthTV, yearTV, descriptionTV, numberOfProposals, seeProposalsTV;
     private CircleImageView circleProfileImage;
-    private String currentUser, userID, bidder, bidderProfileImageLink;
+    private String currentUser, userID, bidder, bidderProfileImageLink,bidderId;
     private ImageView backImageView;
     private LinearLayout bidLayout;
     boolean bidStatus = false;
@@ -162,7 +162,7 @@ public class ClickPostActivity extends AppCompatActivity {
                         String bidDay = bidDayET.getText().toString();
                         String bidDescription = bidDescriptionET.getText().toString();
 
-                        bidRef.child(postKey).child(currentUser).setValue(new Bid(bidAmount, bidDay, bidDescription, "true", bidder, bidderProfileImageLink)).addOnCompleteListener(
+                        bidRef.child(postKey).child(currentUser).setValue(new Bid(bidAmount, bidDay, bidDescription, "true", bidder, bidderProfileImageLink,bidderId)).addOnCompleteListener(
                                 new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -292,6 +292,7 @@ public class ClickPostActivity extends AppCompatActivity {
         backImageView = findViewById(R.id.backImageView);
         numberOfProposals = findViewById(R.id.numberOfProposals);
         seeProposalsTV = findViewById(R.id.seeProposalsTV);
+        bidderId = currentUser;
     }
 
 

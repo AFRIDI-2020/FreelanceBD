@@ -16,4 +16,7 @@
     <color name="ashGray">#B2BEB5</color>
     <color name="CambridgeBlue">#A3C1AD</color>
     <color name="yellow">#FFD600</color>
+    <color name="sky">#65c7f7</color>
+    <color name="light_sky">#9cecfb</color>
+    <color name="blue">#0052d4</color>
 </resources>

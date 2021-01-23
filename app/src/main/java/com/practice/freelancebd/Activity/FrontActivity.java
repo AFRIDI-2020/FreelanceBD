@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.practice.freelancebd.R;
 
 public class FrontActivity extends AppCompatActivity {
 
     private TextView signInTV, signUpTV;
+    private FirebaseUser runningUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,4 +55,5 @@ public class FrontActivity extends AppCompatActivity {
         signInTV = findViewById(R.id.signInTV);
         signUpTV = findViewById(R.id.signUpTV);
     }
+
 }

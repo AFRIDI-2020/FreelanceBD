@@ -20,7 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -50,10 +53,10 @@ public class EditAboutUserActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private String currentUser, profileImageLink = null;
     private AlertDialog uploadAlertDialog, savingAlertDialog,loadingAlertDialog;
-    private TextView saveTV;
     private DatabaseReference databaseReference, userProfileRef;
     private TextInputLayout fullNameTextInputLayout, professioanlTagTextInputLayout, aboutUserTextInputLayout;
     private int flag = 0, completeness = 0;
+    private TextView saveTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +67,7 @@ public class EditAboutUserActivity extends AppCompatActivity {
         startLoadingAlertDialog();
         getPreviousData();
 
-        saveTV.setOnClickListener(new View.OnClickListener() {
+        saveTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -171,20 +174,20 @@ public class EditAboutUserActivity extends AppCompatActivity {
     //initializing all layout views
 
     private void init() {
-        profileImage = findViewById(R.id.profileImage);
+        profileImage = findViewById(R.id.profile_image);
         fullNameTIET = findViewById(R.id.fullNameTIET);
         professionalTagTIET = findViewById(R.id.professionalTagTIET);
         aboutUserTIET = findViewById(R.id.aboutUserTIET);
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser().getUid();
-        saveTV = findViewById(R.id.saveTV);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userProfileRef = databaseReference.child("users").child(currentUser).child("userProfile");
         fullNameTextInputLayout = findViewById(R.id.fullNameTextInputLayout);
         professioanlTagTextInputLayout = findViewById(R.id.professionalTagTextInputLayout);
         aboutUserTextInputLayout = findViewById(R.id.aboutUserTextInputLayout);
         backImageView = findViewById(R.id.backImageView);
+        saveTv = findViewById(R.id.tv_save);
     }
 
 
@@ -286,22 +289,50 @@ public class EditAboutUserActivity extends AppCompatActivity {
                 startUploadAlertDialog();
                 resultUri = result.getUri();
                 flag = 1;
+                saveToCloudStorage(resultUri);
                 profileImage.setImageURI(resultUri);
-                storageReference.child("profileImages").child(currentUser + ".jpg")
-                        .putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
-                        if (task.isSuccessful()) {
-                            uploadAlertDialog.dismiss();
-                            profileImageLink = resultUri.toString();
-                        }
-                    }
-                });
             }
         }
     }
 
+    private void saveToCloudStorage(Uri resultUri) {
+        final StorageReference profileImgRef = storageReference.child("profileImages").child(currentUser + ".jpg");
+        final UploadTask uploadTask = profileImgRef.putFile(resultUri);
+
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
+                        return profileImgRef.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Uri downloadUri = task.getResult();
+                            profileImageLink  = downloadUri.toString();
+                            uploadAlertDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
+
+    //a dialog is showing while uploading
     private void startUploadAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(EditAboutUserActivity.this);
         View view = getLayoutInflater().inflate(R.layout.uploading_layout, null);
@@ -312,9 +343,6 @@ public class EditAboutUserActivity extends AppCompatActivity {
         uploadAlertDialog.show();
     }
 
-    //disable back button
-    @Override
-    public void onBackPressed() {
 
-    }
+
 }

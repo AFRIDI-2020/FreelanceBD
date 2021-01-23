@@ -5,4 +5,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bid">bid</string>
     <string name="bids">bids</string>
+    <string name="update_your_profile_for">Update your profile, help others finding you.</string>
+
+    <!--profile-->
+    <string name="completed">Completed</string>
+    <string name="taken">Job taken</string>
+    <string name="review">Reviews</string>
 </resources>

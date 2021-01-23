@@ -2,11 +2,14 @@ package com.practice.freelancebd.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,38 +30,28 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AboutUserProfile extends AppCompatActivity {
 
 
-    private ImageView editIV,profileImage,backImageView;
-    private TextView fullNameTV, professionalTagTV, aboutUserTV;
+    private CircleImageView profileImage;
+    private TextView userFullNameTV, professionTV, userDetailsTV;
     private DatabaseReference databaseReference,userProfileRef;
     private FirebaseAuth firebaseAuth;
     String currentUser;
     private AlertDialog loadingAlertDialog;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_user_profile);
-
-
-
         init();
+        setUpToolbar();
         startLoadingAlertDialog();
         getDataFromDatabase();
-        editIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goTOEditProfile();
-            }
-        });
+    }
 
-        backImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AboutUserProfile.this,HomeActivity.class));
-            }
-        });
-
-
+    private void setUpToolbar() {
+        toolbar = findViewById(R.id.about_user_profile_toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
     }
 
     private void startLoadingAlertDialog() {
@@ -76,11 +69,11 @@ public class AboutUserProfile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String fullName = snapshot.child("fullName").getValue().toString();
-                    fullNameTV.setText(fullName);
+                    userFullNameTV.setText(fullName);
                     String professionalTag = snapshot.child("professionalTag").getValue().toString();
-                    professionalTagTV.setText(professionalTag);
+                    professionTV.setText(professionalTag);
                     String aboutUser = snapshot.child("aboutUser").getValue().toString();
-                    aboutUserTV.setText(aboutUser);
+                    userDetailsTV.setText(aboutUser);
                     String profileImageLink = snapshot.child("profileImageLink").getValue().toString();
                     Picasso.get().load(profileImageLink).into(profileImage);
                 }
@@ -101,21 +94,33 @@ public class AboutUserProfile extends AppCompatActivity {
 
 
     private void init() {
-
-        editIV = findViewById(R.id.editIV);
-        fullNameTV = findViewById(R.id.fullNameTV);
-        professionalTagTV = findViewById(R.id.professionalTagTV);
-        aboutUserTV = findViewById(R.id.aboutUserTV);
+        userFullNameTV = findViewById(R.id.tv_username);
+        userDetailsTV = findViewById(R.id.tv_user_details);
+        professionTV = findViewById(R.id.tv_profession);
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userProfileRef = databaseReference.child("users").child(currentUser).child("userProfile");
-        profileImage = findViewById(R.id.profileImage);
-        backImageView = findViewById(R.id.backImageView);
+        profileImage = findViewById(R.id.profile_image);
+
     }
 
     @Override
-    public void onBackPressed() {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
 
+        getMenuInflater().inflate(R.menu.edit_profile_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == R.id.edit_profile){
+            startActivity(new Intent(this,EditAboutUserActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

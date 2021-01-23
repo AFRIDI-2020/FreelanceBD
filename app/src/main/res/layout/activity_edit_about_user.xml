@@ -1,237 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Activity.EditAboutUserActivity">
 
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/edit_user_profile_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/app_gradient_color"
-        android:orientation="horizontal">
+        android:background="@drawable/app_new_gradient"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/backImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_chevron_left_white_24dp" />
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_height="match_parent">
 
-            <TextView
+            <ImageView
+                android:id="@+id/backImageView"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_chevron_left_white_24dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:text="Save"
                 android:textColor="@color/whiteColor"
-                android:textSize="20sp"
-                android:text="Edit Profile"/>
+                android:background="@drawable/save_tv_color_change_on_press"
+                android:textSize="@dimen/_13sdp"
+                android:padding="@dimen/_5sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginRight="@dimen/_20sdp"/>
 
 
-            <TextView
-                android:id="@+id/saveTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/whiteColor"
-                android:layout_marginRight="15dp"
-                android:textSize="18sp"
-                android:text="Save"/>
-
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
 
-    <ScrollView
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/update_profile_for"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:gravity="center"
+        android:text="@string/update_your_profile_for"
+        android:textAlignment="center"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_user_profile_toolbar" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:civ_border_width="@dimen/_2sdp"
+        app:civ_border_color="@color/sky"
+        android:scaleType="centerCrop"
+        android:src="@drawable/add_profile_photo"
+        app:layout_constraintEnd_toEndOf="@id/update_profile_for"
+        app:layout_constraintStart_toStartOf="@id/update_profile_for"
+        app:layout_constraintTop_toBottomOf="@id/update_profile_for" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/whiteColor"
+        android:elevation="@dimen/_10sdp"
+        app:fabSize="mini"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="selectPhoto"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
+        app:layout_constraintEnd_toEndOf="@id/profile_image"
+        app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fullNameTextInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:backgroundTint="@color/black"
+        android:hint="User full name"
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/error_appearance"
+        app:layout_constraintTop_toBottomOf="@id/profile_image">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullNameTIET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="10dp">
+            android:drawableLeft="@drawable/ic_person_black_18dp"
+            android:drawablePadding="@dimen/_5sdp"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/_12sdp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/professionalTagTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:errorEnabled="true"
+        android:hint="Profession"
+        app:errorTextAppearance="@style/error_appearance"
+        app:layout_constraintTop_toBottomOf="@id/fullNameTextInputLayout">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-
-                <RelativeLayout
-                    android:layout_width="130dp"
-                    android:layout_height="160dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/square_image_frame"
-                    android:padding="3dp"
-                    >
-
-                    <ImageView
-                        android:id="@+id/profileImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_person_black_18dp" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="bottom">
-
-                    <Button
-                        android:id="@+id/selectPhotoBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Select photo"
-                        android:onClick="selectPhoto"
-                        android:background="@color/darkGreen"
-                        android:textSize="16sp"
-                        android:textColor="@color/whiteColor"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Please do not upload image more than 150 KB"/>
-
-                </LinearLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/professionalTagTIET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_label_black"
+            android:textCursorDrawable="@null"
+            android:drawablePadding="@dimen/_5sdp"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
 
 
-            </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/aboutUserTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        app:errorEnabled="true"
+        android:hint="Your skills"
+        app:layout_constraintTop_toBottomOf="@id/professionalTagTextInputLayout"
+        app:errorTextAppearance="@style/error_appearance">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fullNameTextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:backgroundTint="@color/black"
-                android:layout_marginRight="10dp"
-                app:errorEnabled="true"
-                app:errorTextAppearance="@style/error_appearance">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fullNameTIET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_person_black_18dp"
-                    android:textCursorDrawable="@null"
-                    android:drawablePadding="5dp"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/aboutUserTIET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:drawableLeft="@drawable/ic_description_black"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
 
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Professional tag"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/professionalTagTextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:errorEnabled="true"
-                app:errorTextAppearance="@style/error_appearance">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/professionalTagTIET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_label_black"
-                    android:textCursorDrawable="@null"
-                    android:drawablePadding="5dp"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Describe yourself"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Write down a short resume on you. Tell us about your skill, qualification or experience of work."
-                android:layout_marginLeft="10dp"
-                />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/aboutUserTextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:errorEnabled="true"
-                app:errorTextAppearance="@style/error_appearance">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/aboutUserTIET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_description_black"
-                    android:drawablePadding="5dp"
-                    android:textCursorDrawable="@null"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-        </LinearLayout>
-
-    </ScrollView>
-    
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 
-</LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
