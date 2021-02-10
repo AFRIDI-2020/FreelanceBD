@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.practice.freelancebd.Activity.ChatActivity;
 import com.practice.freelancebd.Activity.PersonsActivity;
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +30,7 @@ public class BidderListAdapter extends FirebaseRecyclerAdapter<Bidder,BidderList
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull BidderViewHolder holder, int position, @NonNull Bidder model) {
+    protected void onBindViewHolder(@NonNull BidderViewHolder holder, int position, @NonNull final Bidder model) {
 
         holder.bidderNameTV.setText(model.getBidder());
         holder.bidAmountTV.setText(model.getBidAmount());
@@ -53,6 +55,18 @@ public class BidderListAdapter extends FirebaseRecyclerAdapter<Bidder,BidderList
                 v.getContext().startActivity(intent);
             }
         });
+
+        holder.messageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ChatActivity.class);
+                intent.putExtra("bidderId",bidderId);
+                intent.putExtra("bidderName",model.getBidder());
+                intent.putExtra("bidderImage",model.getBidderProfileImageLink());
+                v.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @NonNull
@@ -66,6 +80,7 @@ public class BidderListAdapter extends FirebaseRecyclerAdapter<Bidder,BidderList
 
         private TextView bidderNameTV, bidAmountTV, bidDayTV, bidDescriptionTV,dayOrDaysTV;
         private CircleImageView bidderProfileImage;
+        private ImageView messageIcon;
 
         public BidderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +91,7 @@ public class BidderListAdapter extends FirebaseRecyclerAdapter<Bidder,BidderList
             bidDescriptionTV = itemView.findViewById(R.id.bidDescriptionTV);
             bidderProfileImage = itemView.findViewById(R.id.bidderProfileImage);
             dayOrDaysTV = itemView.findViewById(R.id.dayOrDaysTV);
+            messageIcon = itemView.findViewById(R.id.messageIcon);
         }
     }
 }

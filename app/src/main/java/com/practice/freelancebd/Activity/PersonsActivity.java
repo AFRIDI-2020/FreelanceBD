@@ -24,10 +24,13 @@ import com.practice.freelancebd.ModelClasses.AllUserPost;
 import com.practice.freelancebd.R;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PersonsActivity extends AppCompatActivity {
 
     private String bidderId;
-    private ImageView profileImage, backImageView;
+    private CircleImageView profileImage;
+    private ImageView backImageView;
     private TextView personFullNameTV, aboutPersonTV,professionalTagTV,numberOfPostTV;
     private String profileImageLink;
     private DatabaseReference databaseReference;
@@ -41,8 +44,8 @@ public class PersonsActivity extends AppCompatActivity {
         bidderId = getIntent().getStringExtra("bidderId");
         init();
         viewPersonalInfo();
-        viewNumberOfPostedJob();
-        personPostsLayout.setOnClickListener(new View.OnClickListener() {
+        //viewNumberOfPostedJob();
+        /*personPostsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PersonsActivity.this);
@@ -68,7 +71,7 @@ public class PersonsActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
-        });
+        });*/
 
     }
 
@@ -122,7 +125,6 @@ public class PersonsActivity extends AppCompatActivity {
         aboutPersonTV = findViewById(R.id.aboutPersonTV);
         professionalTagTV = findViewById(R.id.professionalTagTV);
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        numberOfPostTV = findViewById(R.id.numberOfPostTV);
-        personPostsLayout = findViewById(R.id.personPostsLayout);
+
     }
 }
