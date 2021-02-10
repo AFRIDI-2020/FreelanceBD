@@ -34,19 +34,19 @@
                 android:id="@+id/tv_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
-                android:textColor="@color/whiteColor"
+                android:layout_marginRight="@dimen/_20sdp"
                 android:background="@drawable/save_tv_color_change_on_press"
-                android:textSize="@dimen/_13sdp"
-                android:padding="@dimen/_5sdp"
                 android:clickable="true"
                 android:focusable="true"
-                android:textStyle="bold"
+                android:padding="@dimen/_5sdp"
+                android:text="Save"
                 android:textAllCaps="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/whiteColor"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginRight="@dimen/_20sdp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -74,10 +74,10 @@
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_150sdp"
         android:layout_marginTop="@dimen/_15sdp"
-        app:civ_border_width="@dimen/_2sdp"
-        app:civ_border_color="@color/sky"
         android:scaleType="centerCrop"
         android:src="@drawable/add_profile_photo"
+        app:civ_border_color="@color/sky"
+        app:civ_border_width="@dimen/_2sdp"
         app:layout_constraintEnd_toEndOf="@id/update_profile_for"
         app:layout_constraintStart_toStartOf="@id/update_profile_for"
         app:layout_constraintTop_toBottomOf="@id/update_profile_for" />
@@ -86,11 +86,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/whiteColor"
-        android:elevation="@dimen/_10sdp"
-        app:fabSize="mini"
         android:clickable="true"
+        android:elevation="@dimen/_10sdp"
         android:focusable="true"
         android:onClick="selectPhoto"
+        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@id/profile_image"
         app:layout_constraintEnd_toEndOf="@id/profile_image"
         app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
@@ -101,13 +101,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:backgroundTint="@color/black"
-        android:hint="User full name"
-        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="You full name"
         app:errorEnabled="true"
         app:errorTextAppearance="@style/error_appearance"
-        app:layout_constraintTop_toBottomOf="@id/profile_image">
+        app:layout_constraintTop_toBottomOf="@id/label_full_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fullNameTIET"
@@ -120,28 +118,28 @@
             android:textCursorDrawable="@null"
             android:textSize="@dimen/_12sdp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/professionalTagTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:backgroundTint="@color/black"
+        android:hint="Your profession"
         app:errorEnabled="true"
-        android:hint="Profession"
         app:errorTextAppearance="@style/error_appearance"
-        app:layout_constraintTop_toBottomOf="@id/fullNameTextInputLayout">
+        app:layout_constraintTop_toBottomOf="@id/label_profession">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/professionalTagTIET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_label_black"
-            android:textCursorDrawable="@null"
             android:drawablePadding="@dimen/_5sdp"
             android:inputType="text"
             android:textColor="@color/black"
+            android:textCursorDrawable="@null"
             android:textSize="@dimen/_12sdp" />
 
 
@@ -151,31 +149,61 @@
         android:id="@+id/aboutUserTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        app:errorEnabled="true"
+        android:backgroundTint="@color/black"
         android:hint="Your skills"
-        app:layout_constraintTop_toBottomOf="@id/professionalTagTextInputLayout"
-        app:errorTextAppearance="@style/error_appearance">
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/error_appearance"
+        app:layout_constraintTop_toBottomOf="@id/label_skills">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/aboutUserTIET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="false"
             android:drawableLeft="@drawable/ic_description_black"
             android:drawablePadding="@dimen/_5sdp"
-            android:textCursorDrawable="@null"
+            android:singleLine="false"
             android:textColor="@color/black"
+            android:textCursorDrawable="@null"
             android:textSize="@dimen/_12sdp" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/label_full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Full name"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
+    <TextView
+        android:id="@+id/label_profession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:text="Profession"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullNameTextInputLayout" />
 
+    <TextView
+        android:id="@+id/label_skills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:text="Your skills"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/professionalTagTextInputLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

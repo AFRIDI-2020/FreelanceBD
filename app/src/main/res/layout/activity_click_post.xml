@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e9e6"
     android:orientation="vertical"
     tools:context=".Activity.ClickPostActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/app_gradient_color"
+        android:background="@drawable/app_new_gradient"
         android:orientation="horizontal">
 
 
@@ -21,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_chevron_left_white_24dp" />
+            app:srcCompat="@drawable/ic_chevron_left_white_24dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="20dp"
+                    android:background="@color/whiteColor"
                     android:paddingBottom="20dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
@@ -74,8 +74,8 @@
                             android:id="@+id/circularProfileImage"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:src="@drawable/ic_person_black18"
-                            app:civ_border_color="@color/black"
+                            app:srcCompat="@drawable/ic_person_black18"
+                            app:civ_border_color="@color/sky"
                             app:civ_border_width="2dp" />
 
 
@@ -91,7 +91,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Employer"
-                                android:textColor="@color/darkGreen"
+                                android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
                                     android:drawableLeft="@drawable/ic_flag_dark_green_18dp"
                                     android:drawablePadding="5dp"
                                     android:text="Job category"
-                                    android:textColor="@color/darkGreen"
+                                    android:textColor="@color/blue"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -153,7 +153,7 @@
                                     android:drawableLeft="@drawable/ic_view_headline_dark_green_24dp"
                                     android:drawablePadding="5dp"
                                     android:text="Title"
-                                    android:textColor="@color/darkGreen"
+                                    android:textColor="@color/blue"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -185,7 +185,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_horizontal"
-                                        android:src="@drawable/ic_gavel_dark_green_26dp" />
+                                        app:srcCompat="@drawable/ic_gavel_dark_green_26dp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -217,7 +217,7 @@
                                 android:drawableLeft="@drawable/ic_payment_dark_green_24dp"
                                 android:drawablePadding="5dp"
                                 android:text="Budget"
-                                android:textColor="@color/darkGreen"
+                                android:textColor="@color/blue"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -252,7 +252,7 @@
                                 android:drawableLeft="@drawable/ic_hourglass_full_dark_green_24dp"
                                 android:drawablePadding="5dp"
                                 android:text="Last day to bid"
-                                android:textColor="@color/darkGreen"
+                                android:textColor="@color/blue"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -298,7 +298,7 @@
                                 android:drawableLeft="@drawable/ic_description_dark_green_18dp"
                                 android:drawablePadding="5dp"
                                 android:text="Description"
-                                android:textColor="@color/darkGreen"
+                                android:textColor="@color/blue"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -327,7 +327,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 app:cardCornerRadius="5dp"
-                app:cardElevation="10dp">
+                app:cardElevation="@dimen/_30sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -348,7 +348,7 @@
                             android:layout_height="wrap_content"
                             android:text="Proposals ("
                             android:textSize="16sp"
-                            android:textColor="@color/red"
+                            android:textColor="@color/blue"
                             android:textStyle="bold"/>
                         <TextView
                             android:id="@+id/numberOfProposals"
@@ -356,7 +356,7 @@
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textSize="16sp"
-                            android:textColor="@color/red"
+                            android:textColor="@color/blue"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -364,7 +364,7 @@
                             android:layout_height="wrap_content"
                             android:text=")"
                             android:textSize="16sp"
-                            android:textColor="@color/red"
+                            android:textColor="@color/blue"
                             android:textStyle="bold"/>
 
 
@@ -375,7 +375,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
-                        android:textColor="@color/red"
+                        android:textColor="@color/blue"
                         android:text="See"
                         android:layout_gravity="right"
                         android:layout_marginTop="5dp"

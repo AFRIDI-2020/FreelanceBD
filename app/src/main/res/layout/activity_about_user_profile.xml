@@ -24,11 +24,11 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_back_arrow"
-                android:layout_marginLeft="@dimen/_10sdp"/>
+                app:srcCompat="@drawable/ic_back_arrow" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -40,53 +40,51 @@
         android:id="@+id/profile_image"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_130sdp"
-        app:civ_border_width="@dimen/_2sdp"
-        app:civ_border_color="@color/sky"
         android:scaleType="centerCrop"
-        app:layout_constraintTop_toBottomOf="@id/about_user_profile_toolbar"
-        app:layout_constraintStart_toStartOf="@id/about_user_profile_toolbar"
+        app:civ_border_color="@color/sky"
+        app:civ_border_width="@dimen/_2sdp"
         app:layout_constraintEnd_toEndOf="parent"
-         />
+        app:layout_constraintStart_toStartOf="@id/about_user_profile_toolbar"
+        app:layout_constraintTop_toBottomOf="@id/about_user_profile_toolbar" />
 
     <TextView
         android:id="@+id/tv_username"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginRight="@dimen/_10sdp"
+        android:gravity="center_horizontal"
         android:text="Username"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="@dimen/_16sdp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_image"
-        app:layout_constraintStart_toStartOf="@id/profile_image"
-        app:layout_constraintEnd_toEndOf="@id/profile_image"
-        android:textAlignment="center"
-        android:gravity="center_horizontal" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
     <ImageView
         android:id="@+id/chat_icon"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@id/about_user_profile_toolbar"
-        app:srcCompat="@drawable/ic_chat_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_4sdp"
-        />
+        android:layout_marginRight="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_user_profile_toolbar"
+        app:srcCompat="@drawable/ic_chat_black_24dp" />
 
     <TextView
         android:id="@+id/tv_profession"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:text="Profession"
-        app:layout_constraintEnd_toEndOf="@id/tv_username"
         android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@id/tv_username"
         app:layout_constraintStart_toStartOf="@id/tv_username"
-        app:layout_constraintTop_toBottomOf="@id/tv_username"
-        android:gravity="center_horizontal" />
+        app:layout_constraintTop_toBottomOf="@id/tv_username" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/skill_card_view"
@@ -134,50 +132,49 @@
             android:background="@color/whiteColor"
             android:padding="@dimen/_10sdp">
 
-           <androidx.constraintlayout.widget.ConstraintLayout
-               android:id="@+id/job_taken_layout"
-               android:layout_width="@dimen/_70sdp"
-               android:layout_height="@dimen/_60sdp"
-               app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               android:background="@drawable/job_complete_bg_selector"
-               android:elevation="@dimen/_20sdp"
-               android:padding="@dimen/_6sdp"
-               >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/job_taken_layout"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:background="@drawable/job_complete_bg_selector"
+                android:elevation="@dimen/_20sdp"
+                android:padding="@dimen/_6sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-               <TextView
-                   android:id="@+id/taken_jobs"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="20"
-                   android:textColor="@color/blue"
-                   android:textSize="@dimen/_20sdp"
-                   android:textStyle="bold"
-                   app:layout_constraintEnd_toEndOf="@id/label_taken_completed"
-                   app:layout_constraintStart_toStartOf="@id/label_taken_completed"
-                   app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/taken_jobs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_20sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/label_taken_completed"
+                    app:layout_constraintStart_toStartOf="@id/label_taken_completed"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-               <TextView
-                   android:id="@+id/label_taken_completed"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/taken"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/taken_jobs"
-                   app:layout_constraintEnd_toEndOf="parent"/>
+                <TextView
+                    android:id="@+id/label_taken_completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/taken"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/taken_jobs" />
 
-           </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/job_comleted_layout"
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:elevation="@dimen/_20sdp"
                 android:background="@drawable/job_complete_bg_selector"
-                app:layout_constraintTop_toTopOf="@id/job_taken_layout"
-                app:layout_constraintStart_toEndOf="@id/job_taken_layout"
-                app:layout_constraintEnd_toStartOf="@id/review_number_layout"
+                android:elevation="@dimen/_20sdp"
                 android:padding="@dimen/_6sdp"
-                >
+                app:layout_constraintEnd_toStartOf="@id/review_number_layout"
+                app:layout_constraintStart_toEndOf="@id/job_taken_layout"
+                app:layout_constraintTop_toTopOf="@id/job_taken_layout">
 
                 <TextView
                     android:id="@+id/completed_jobs"
@@ -196,8 +193,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/completed"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/completed_jobs" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -206,12 +203,11 @@
                 android:id="@+id/review_number_layout"
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:elevation="@dimen/_20sdp"
                 android:background="@drawable/job_complete_bg_selector"
-                app:layout_constraintTop_toTopOf="@id/job_comleted_layout"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:elevation="@dimen/_20sdp"
                 android:padding="@dimen/_6sdp"
-                >
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/job_comleted_layout">
 
                 <TextView
                     android:id="@+id/reviews"
