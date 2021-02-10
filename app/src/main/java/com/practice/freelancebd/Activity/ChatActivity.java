@@ -3,6 +3,8 @@ package com.practice.freelancebd.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,16 +14,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.practice.freelancebd.Custom.MessageAdapter;
+import com.practice.freelancebd.ModelClasses.Message;
 import com.practice.freelancebd.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -35,6 +42,10 @@ public class ChatActivity extends AppCompatActivity {
     private String currentUserId;
     private ImageView sendIcon;
     private EditText et_msg;
+    private RecyclerView messageRecyclerView;
+    private List<Message>messageList = new ArrayList<>();
+    private MessageAdapter messageAdapter;
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +62,16 @@ public class ChatActivity extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         currentUserId = firebaseAuth.getCurrentUser().getUid();
+        messageAdapter = new MessageAdapter(messageList);
+        messageRecyclerView = findViewById(R.id.messageRecyclerView);
+        linearLayoutManager = new LinearLayoutManager(this);
+        messageRecyclerView.setHasFixedSize(true);
+        messageRecyclerView.setLayoutManager(linearLayoutManager);
+
+        messageRecyclerView.setAdapter(messageAdapter);
+
+        loadMessages(bidder_id);
+
 
         rootRef.child("chat").child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,6 +110,39 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadMessages(String bidder_id) {
+        rootRef.child("message").child(currentUserId).child(bidder_id).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                Message message = snapshot.getValue(Message.class);
+
+                messageList.add(message);
+                messageAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void sendMessage(String bidder_id) {

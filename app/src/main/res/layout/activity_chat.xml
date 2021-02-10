@@ -26,10 +26,10 @@
                 android:layout_width="@dimen/_24sdp"
                 android:layout_height="@dimen/_24sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
-                app:srcCompat="@drawable/ic_chevron_left_white_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_chevron_left_white_24dp" />
 
             <TextView
                 android:id="@+id/tv_bidder_name"
@@ -40,11 +40,10 @@
                 android:text="Bidder name"
                 android:textColor="@color/whiteColor"
                 android:textSize="@dimen/_18sdp"
+                app:layout_constraintBottom_toBottomOf="@id/backIcon"
                 app:layout_constraintEnd_toStartOf="@id/person_image"
                 app:layout_constraintStart_toEndOf="@id/backIcon"
-                app:layout_constraintTop_toTopOf="@id/backIcon"
-                app:layout_constraintBottom_toBottomOf="@id/backIcon"/>
-
+                app:layout_constraintTop_toTopOf="@id/backIcon" />
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -53,18 +52,19 @@
                 android:layout_height="@dimen/_34sdp"
                 android:layout_marginRight="@dimen/_20sdp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_person_black_24dp"
                 app:civ_border_color="@color/black"
                 app:civ_border_width="@dimen/_1sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_person_black_24dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sendMesageLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/whiteColor"
@@ -77,12 +77,12 @@
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            app:srcCompat="@drawable/ic_baseline_send_24"
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_send_24" />
 
         <EditText
             android:id="@+id/et_msg"
@@ -91,19 +91,27 @@
             android:layout_marginStart="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_6sdp"
             android:backgroundTint="@color/whiteColor"
-            android:hint="Type here."
             android:clickable="true"
             android:focusable="true"
+            android:hint="Type here."
             android:singleLine="false"
             android:textColor="@color/black"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/_13sdp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/send_icon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messageRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="@dimen/_6sdp"
+        app:layout_constraintBottom_toTopOf="@id/sendMesageLayout"
+        app:layout_constraintTop_toBottomOf="@id/chatActivityToolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
