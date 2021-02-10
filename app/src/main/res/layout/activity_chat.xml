@@ -78,6 +78,8 @@
             android:layout_height="@dimen/_24sdp"
             android:layout_marginRight="@dimen/_10sdp"
             app:srcCompat="@drawable/ic_baseline_send_24"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
