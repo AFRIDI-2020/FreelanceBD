@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.practice.freelancebd.Activity.ChatActivity;
 import com.practice.freelancebd.Activity.PersonsActivity;
 import com.squareup.picasso.Picasso;
@@ -55,6 +56,10 @@ public class BidderListAdapter extends FirebaseRecyclerAdapter<Bidder,BidderList
                 v.getContext().startActivity(intent);
             }
         });
+
+        if(model.getBidderId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+            holder.messageIcon.setVisibility(View.GONE);
+        }
 
         holder.messageIcon.setOnClickListener(new View.OnClickListener() {
             @Override
