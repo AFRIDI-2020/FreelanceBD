@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sign_in_bg"
+    android:background="@color/whiteColor"
     android:fitsSystemWindows="true"
     tools:context=".Activity.RegisterActivity">
 
@@ -28,8 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="It is easy and secured"
-                    android:textColor="@color/whiteColor"
-                    android:textSize="20sp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_20sdp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -39,9 +39,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:hint="Public Username"
-                    android:textColorHint="#FFFFFF"
-                    app:boxBackgroundColor="#80000000"
-                    app:boxStrokeColor="#000000"
+                    android:textColorHint="@color/colorAccent"
+                    app:boxBackgroundColor="@color/whiteColor"
+                    app:boxStrokeColor="@color/colorAccent"
                     app:boxStrokeWidth="0.5dp"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/error_appearance">
@@ -50,7 +50,7 @@
                         android:id="@+id/publicUsernameTIET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_person_black_24dp"
+                        android:drawableLeft="@drawable/ic_person_pink_24"
                         android:drawablePadding="5dp"
                         android:inputType="text"
                         android:textColor="#FFFFFF"
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:text="Your username will be public and you will not be able to change it."
                     android:textSize="14sp"
-                    android:textColor="@color/whiteColor"/>
+                    android:textColor="@color/colorAccent"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/emailTextInputLayout"
@@ -73,9 +73,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:hint="Email"
-                    android:textColorHint="#FFFFFF"
-                    app:boxBackgroundColor="#80000000"
-                    app:boxStrokeColor="#000000"
+                    android:textColorHint="@color/colorAccent"
+                    app:boxBackgroundColor="@color/whiteColor"
+                    app:boxStrokeColor="@color/colorAccent"
                     app:boxStrokeWidth="0.5dp"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/error_appearance">
@@ -100,15 +100,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:textColorHint="#FFFFFF"
-                    app:boxBackgroundColor="#80000000"
-                    app:boxStrokeColor="#000000"
+                    android:textColorHint="@color/colorAccent"
+                    app:boxBackgroundColor="@color/whiteColor"
+                    app:boxStrokeColor="@color/colorAccent"
                     app:boxStrokeWidth="0.5dp"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/error_appearance"
                     app:passwordToggleDrawable="@drawable/visibility_selector_white"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/whiteColor">
+                    app:passwordToggleTint="@color/colorAccent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/registrationPasswordTIET"
@@ -130,15 +130,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
-                    android:textColorHint="#FFFFFF"
-                    app:boxBackgroundColor="#80000000"
-                    app:boxStrokeColor="#000000"
+                    android:textColorHint="@color/colorAccent"
+                    app:boxBackgroundColor="@color/whiteColor"
+                    app:boxStrokeColor="@color/colorAccent"
                     app:boxStrokeWidth="0.5dp"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/error_appearance"
                     app:passwordToggleDrawable="@drawable/visibility_selector_white"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/whiteColor">
+                    app:passwordToggleTint="@color/colorAccent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/ConfirmPasswordTIET"
@@ -166,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="By registration, you agree with our"
-                        android:textColor="@color/whiteColor"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Terms of Service"
-                        android:textColor="@color/whiteColor"
+                        android:textColor="@color/colorAccent"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -189,7 +189,7 @@
                         android:text="Register"
                         android:textAllCaps="true"
                         android:textColor="#FFFFFF"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
 

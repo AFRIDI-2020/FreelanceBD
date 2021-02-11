@@ -24,7 +24,7 @@ import com.practice.freelancebd.R;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private TextView termsOfServiceTV,forgetPasswordTV;
+    private TextView termsOfServiceTV,forgetPasswordTV, registerTV;
     private Button logInBtn;
     private TextInputLayout emailTextInputLayout, passwordTextInputLayout;
     private String email,password,givenEmail, givenPassword;
@@ -81,6 +81,13 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LogInActivity.this, ForgetPasswordActivity.class));
+            }
+        });
+
+        registerTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LogInActivity.this, RegisterActivity.class));
             }
         });
 
@@ -159,6 +166,7 @@ public class LogInActivity extends AppCompatActivity {
         passwordTextInputLayout = findViewById(R.id.passwordTextInputLayout);
         logInBtn = findViewById(R.id.logInBtn);
         firebaseAuth = FirebaseAuth.getInstance();
+        registerTV = findViewById(R.id.registerTV);
 
         forgetPasswordTV = findViewById(R.id.forgetPasswordTV);
         tashieLoader =(TashieLoader)findViewById(R.id.tashieLoader);

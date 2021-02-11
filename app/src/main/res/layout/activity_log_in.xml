@@ -1,185 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sign_in_bg"
-    android:fitsSystemWindows="true"
+    android:background="@color/whiteColor"
     tools:context=".Activity.LogInActivity">
 
+    <TextView
+        android:id="@+id/tv_login_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Login"
+        android:textColor="@color/violate"
+        android:textSize="@dimen/_30sdp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/gl_30"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/firstLinearLayout"
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".3" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    <TextView
+        android:id="@+id/tv_make_sure_registerd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:text="Before logging in, make sure you've registered."
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_label" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:hint="Email"
+        android:textColorHint="@color/colorPrimary"
+        app:boxBackgroundColor="@color/whiteColor"
+        app:boxStrokeColor="@color/violate"
+        app:boxStrokeWidth="0.5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_make_sure_registerd">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailTIET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:drawablePadding="5dp"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:hint="Password"
+        android:textColorHint="@color/colorAccent"
+        app:boxBackgroundColor="@color/whiteColor"
+        app:boxStrokeColor="@color/colorAccent"
+        app:boxStrokeWidth="0.5dp"
+        app:layout_constraintEnd_toEndOf="@id/emailTextInputLayout"
+        app:layout_constraintStart_toStartOf="@id/emailTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/emailTextInputLayout"
+        app:passwordToggleDrawable="@drawable/visibility_selector_white"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorAccent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordTIET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+            android:drawablePadding="5dp"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@color/black"
             android:textColorHint="#FFFFFF"
-            app:boxBackgroundColor="#80000000"
-            app:boxStrokeColor="#000000"
-            app:boxStrokeWidth="0.5dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailTIET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="5dp"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:textColorHint="#FFFFFF"
-            app:boxBackgroundColor="#80000000"
-            app:boxStrokeColor="#000000"
-            app:boxStrokeWidth="0.5dp"
-            app:passwordToggleDrawable="@drawable/visibility_selector_white"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="#FFFFFF">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordTIET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
-                android:drawablePadding="5dp"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="13sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:textSize="@dimen/_12sdp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:weightSum="7">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-
-            <Button
-                android:id="@+id/logInBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="5"
-                android:background="@drawable/sign_in_button_background"
-                android:elevation="10dp"
-                android:text="Sign in"
-                android:padding="10dp"
-                android:textAllCaps="false"
-                android:textColor="@color/whiteColor"
-                android:textSize="14sp"
-                android:textStyle="normal" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+    <Button
+        android:id="@+id/logInBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:layout_weight="5"
+        android:background="@color/colorAccent"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:text="Sign in"
+        android:textAllCaps="true"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/passwordTextInputLayout"
+        app:layout_constraintStart_toStartOf="@id/passwordTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayout" />
 
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/forgetPasswordTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:gravity="right"
+        android:padding="@dimen/_4sdp"
+        android:text="Forget password?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/logInBtn"
+        app:layout_constraintTop_toBottomOf="@id/logInBtn" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_90"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".9" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:weightSum="7">
+    <TextView
+        android:id="@+id/have_not_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:gravity="center_horizontal"
+        android:text="Have not registered yet?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="@id/logInBtn"
+        app:layout_constraintStart_toStartOf="@id/logInBtn"
+        app:layout_constraintTop_toBottomOf="@id/forgetPasswordTV" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+    <TextView
+        android:id="@+id/registerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/_4sdp"
+        android:text="Register here"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@color/violate"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/have_not_register"
+        app:layout_constraintStart_toStartOf="@id/have_not_register"
+        app:layout_constraintTop_toBottomOf="@id/have_not_register" />
 
-            <TextView
-                android:id="@+id/forgetPasswordTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="Forget password?"
-                android:textColor="#FFFFFF"
-                android:gravity="right"
-                android:textSize="12sp"/>
+    <TextView
+        android:id="@+id/termsOfServiceTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:gravity="right"
+        android:padding="@dimen/_2sdp"
+        android:text="Terms &amp; Service"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gl_90" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
 
     <com.agrawalsuneet.dotsloader.loaders.TashieLoader
         android:id="@+id/tashieLoader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tashieloader_animDelay="200"
-        app:tashieloader_animDur="1000"
-        app:tashieloader_dotsColor="#FFFFFF"
-        app:tashieloader_dotsDist="5dp"
-        app:tashieloader_dotsRadius="5dp"
-        app:tashieloader_interpolator="@android:anim/accelerate_interpolator"
-        app:tashieloader_noOfDots="6"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:visibility="gone"
-        android:layout_below="@+id/firstLinearLayout"/>
+        android:layout_marginRight="@dimen/_20sdp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/tv_login_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_login_label"
+        app:tashieloader_animDelay="200"
+        app:tashieloader_animDur="1000"
+        app:tashieloader_dotsColor="@color/colorAccent"
+        app:tashieloader_dotsDist="5dp"
+        app:tashieloader_dotsRadius="4dp"
+        app:tashieloader_interpolator="@android:anim/accelerate_interpolator"
+        app:tashieloader_noOfDots="3" />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:text="By logging in, you are agree with our"
-            android:textColor="#FFFFFF"
-            android:textSize="12dp" />
-
-        <TextView
-            android:id="@+id/termsOfServiceTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Terms &amp; Conditions"
-            android:textColor="#FFFFFF"
-            android:textSize="12dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
