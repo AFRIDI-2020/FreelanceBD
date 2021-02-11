@@ -6,306 +6,339 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.ProfileFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:scrollbars="none">
+        android:layout_height="match_parent"
+        >
 
-        <LinearLayout
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_140sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_person_150"
+            app:civ_border_color="@color/violate"
+            app:civ_border_width="@dimen/_2sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:gravity="center_horizontal"
+            android:text="Username"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+
+        <TextView
+            android:id="@+id/tv_profession"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Profession"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/tv_username"
+            app:layout_constraintStart_toStartOf="@id/tv_username"
+            app:layout_constraintTop_toBottomOf="@id/tv_username" />
+
+
+        <TextView
+            android:id="@+id/tv_user_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="android developing, java, kotlin, Firebase, mysql, sqlite, oop"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@id/tv_profession"/>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_details"
+            app:layout_constraintStart_toStartOf="@id/tv_user_details"
+            app:layout_constraintEnd_toEndOf="@id/tv_user_details"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/whiteColor"
+                android:padding="@dimen/_10sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/job_taken_layout"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/job_complete_bg_selector"
+                    android:elevation="@dimen/_20sdp"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/taken_jobs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/label_taken_completed"
+                        app:layout_constraintStart_toStartOf="@id/label_taken_completed"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_taken_completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/taken"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/taken_jobs" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/job_comleted_layout"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/job_complete_bg_selector"
+                    android:elevation="@dimen/_20sdp"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintEnd_toStartOf="@id/review_number_layout"
+                    app:layout_constraintStart_toEndOf="@id/job_taken_layout"
+                    app:layout_constraintTop_toTopOf="@id/job_taken_layout">
+
+                    <TextView
+                        android:id="@+id/completed_jobs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/label_job_completed"
+                        app:layout_constraintStart_toStartOf="@id/label_job_completed"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_job_completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/completed"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/completed_jobs" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/review_number_layout"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/job_complete_bg_selector"
+                    android:elevation="@dimen/_20sdp"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/job_comleted_layout">
+
+                    <TextView
+                        android:id="@+id/reviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/label_reviews"
+                        app:layout_constraintStart_toStartOf="@id/label_reviews"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_reviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/review"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/reviews" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:layout_constraintTop_toBottomOf="@id/cardview1"
+            app:layout_constraintStart_toStartOf="@id/cardview1"
+            app:layout_constraintEnd_toEndOf="@id/cardview1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_4sdp">
 
-            <LinearLayout
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/userAboutCardView"
-                        android:layout_width="130dp"
-                        android:layout_height="180dp"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="4dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/green">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:text="About"
-                                android:textColor="@color/whiteColor"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/createLeafletCardView"
-                        android:layout_width="130dp"
-                        android:layout_height="180dp"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="4dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#3c5455">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Show skills"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="with leaflets"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/myLeafletCardView"
-                        android:layout_width="130dp"
-                        android:layout_height="180dp"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="4dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#3b7364">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:text="My"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:text="leaflets"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/myPostCardView"
-                        android:layout_width="130dp"
-                        android:layout_height="180dp"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="4dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#2E8B57">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:text="My posts"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
+                android:background="@color/whiteColor"
+                android:padding="@dimen/_10sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/myPostsLayout"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/job_complete_bg_selector"
+                    android:elevation="@dimen/_20sdp"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/myPostedJobs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/label_my_posted_jobs"
+                        app:layout_constraintStart_toStartOf="@id/label_my_posted_jobs"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_my_posted_jobs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Posted jobs"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/myPostedJobs" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/my_leaflet_layout"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/job_complete_bg_selector"
+                    android:elevation="@dimen/_20sdp"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintTop_toTopOf="@id/myPostsLayout"
+                    app:layout_constraintStart_toEndOf="@id/myPostsLayout"
+                    app:layout_constraintEnd_toStartOf="@id/my_orders_layout"
+                    >
+
+                    <TextView
+                        android:id="@+id/my_leaflet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/label_my_leaflets"
+                        app:layout_constraintStart_toStartOf="@id/label_my_leaflets"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_my_leaflets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="My Leaflets"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/my_leaflet" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/my_orders_layout"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/job_complete_bg_selector"
+                    android:elevation="@dimen/_20sdp"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintTop_toTopOf="@id/my_leaflet_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/my_orders"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/label_my_orders"
+                        app:layout_constraintStart_toStartOf="@id/label_my_orders"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_my_orders"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="My Leaflets"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/my_orders" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            </LinearLayout>
 
-                        </RelativeLayout>
 
-                    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </LinearLayout>
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
+        </androidx.cardview.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/ordersCardView"
-                        android:layout_width="130dp"
-                        android:layout_height="180dp"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="4dp">
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            app:srcCompat="@drawable/ic_edit_black_24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:id="@+id/edit_icon"/>
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#3CB371">
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:text="Orders"
-                                    android:textColor="@color/colorAccent"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
 
 
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/transactionCardView"
-                        android:layout_width="130dp"
-                        android:layout_height="180dp"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="4dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/green">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:text="Transactions"
-                                android:textColor="@color/whiteColor"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

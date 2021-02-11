@@ -4,16 +4,30 @@ package com.practice.freelancebd.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.practice.freelancebd.Activity.AboutUserProfile;
+import com.practice.freelancebd.Activity.EditAboutUserActivity;
 import com.practice.freelancebd.Activity.MyPostActivity;
 import com.practice.freelancebd.R;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -21,8 +35,13 @@ import com.practice.freelancebd.R;
  */
 public class ProfileFragment extends Fragment {
 
-    private CardView userAboutCardView, createLeafletCardView, myLeafletsCardView, transactionsCardView,
-            myPostsCardview, ordersCardView;
+    private ConstraintLayout myPostedJobLayout;
+    private CircleImageView profileImage;
+    private TextView userFullNameTV, professionTV, userDetailsTV;
+    private DatabaseReference databaseReference,userProfileRef;
+    private FirebaseAuth firebaseAuth;
+    private ImageView editIcon;
+    String currentUser;
 
 
     public ProfileFragment() {
@@ -36,31 +55,57 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        userAboutCardView = view.findViewById(R.id.userAboutCardView);
-        createLeafletCardView = view.findViewById(R.id.createLeafletCardView);
-        myLeafletsCardView = view.findViewById(R.id.myLeafletCardView);
-        transactionsCardView = view.findViewById(R.id.transactionCardView);
-        myPostsCardview = view.findViewById(R.id.myPostCardView);
-        ordersCardView = view.findViewById(R.id.ordersCardView);
+        myPostedJobLayout = view.findViewById(R.id.myPostsLayout);
+        userFullNameTV = view.findViewById(R.id.tv_username);
+        userDetailsTV = view.findViewById(R.id.tv_user_details);
+        professionTV = view.findViewById(R.id.tv_profession);
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser().getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        userProfileRef = databaseReference.child("users").child(currentUser).child("userProfile");
+        profileImage = view.findViewById(R.id.profile_image);
+        editIcon =view.findViewById(R.id.edit_icon);
 
-
-        userAboutCardView.setOnClickListener(new View.OnClickListener() {
+        getDataFromDatabase();
+        myPostedJobLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), AboutUserProfile.class));
+                startActivity(new Intent(getContext(),MyPostActivity.class));
             }
         });
 
-        myPostsCardview.setOnClickListener(new View.OnClickListener() {
+        editIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MyPostActivity.class));
+                startActivity(new Intent(getContext(), EditAboutUserActivity.class));
             }
         });
-
 
         return view;
     }
 
 
+    private void getDataFromDatabase() {
+        userProfileRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String fullName = snapshot.child("fullName").getValue().toString();
+                    userFullNameTV.setText(fullName);
+                    String professionalTag = snapshot.child("professionalTag").getValue().toString();
+                    professionTV.setText(professionalTag);
+                    String aboutUser = snapshot.child("aboutUser").getValue().toString();
+                    userDetailsTV.setText(aboutUser);
+                    String profileImageLink = snapshot.child("profileImageLink").getValue().toString();
+                    Picasso.get().load(profileImageLink).into(profileImage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 }

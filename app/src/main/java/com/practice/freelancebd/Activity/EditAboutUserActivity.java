@@ -84,7 +84,7 @@ public class EditAboutUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(completeness == 4){
-                    startActivity(new Intent(EditAboutUserActivity.this,AboutUserProfile.class));
+                    startActivity(new Intent(EditAboutUserActivity.this,HomeActivity.class));
                 }
                 else {
                     Toast.makeText(EditAboutUserActivity.this, "complete your profile first", Toast.LENGTH_SHORT).show();
