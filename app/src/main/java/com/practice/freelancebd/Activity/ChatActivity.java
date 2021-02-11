@@ -199,4 +199,6 @@ public class ChatActivity extends AppCompatActivity {
         sendIcon = findViewById(R.id.send_icon);
         et_msg = findViewById(R.id.et_msg);
     }
+
+
 }

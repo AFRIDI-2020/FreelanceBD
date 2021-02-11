@@ -19,4 +19,6 @@
     <color name="sky">#65c7f7</color>
     <color name="light_sky">#9cecfb</color>
     <color name="blue">#0052d4</color>
+    <color name="orange">#FF6D00</color>
+    <color name="violate">#C51162</color>
 </resources>

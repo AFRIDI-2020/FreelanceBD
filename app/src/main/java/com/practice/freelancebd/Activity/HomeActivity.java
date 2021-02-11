@@ -112,7 +112,9 @@ public class HomeActivity extends AppCompatActivity {
 
             case R.id.logOut:
                 firebaseAuth.signOut();
-                startActivity(new Intent(HomeActivity.this, LogInActivity.class));
+                Intent intent = new Intent(HomeActivity.this,LogInActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
         }
 
 

@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.practice.freelancebd.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button tempBtn;
-    private FirebaseUser runningUser;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +22,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tempBtn = findViewById(R.id.tempBtn);
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         tempBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(runningUser != null){
+                if(currentUser != null){
                     startActivity(new Intent(MainActivity.this,HomeActivity.class));
 
                 }
-                if(runningUser == null) {
+                if(currentUser == null) {
                     startActivity(new Intent(MainActivity.this,FrontActivity.class));
                 }
 
