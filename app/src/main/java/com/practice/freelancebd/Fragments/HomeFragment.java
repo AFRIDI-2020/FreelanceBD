@@ -125,11 +125,11 @@ public class HomeFragment extends Fragment {
 
                 if(s.toString()!=null){
                     fetchAllPostFromDatabase(s.toString());
-                    searchTV.setVisibility(View.VISIBLE);
+                    searchTV.setVisibility(View.GONE);
                 }
                 else {
                     fetchAllPostFromDatabase("");
-                    searchTV.setVisibility(View.INVISIBLE);
+                    searchTV.setVisibility(View.GONE);
                 }
 
             }

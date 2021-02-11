@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.homeNavItem:
-                        toolbarTextView.setText("Home");
+                        toolbarTextView.setText("Find Works");
                         replaceFragment(new HomeFragment());
                         return true;
 
