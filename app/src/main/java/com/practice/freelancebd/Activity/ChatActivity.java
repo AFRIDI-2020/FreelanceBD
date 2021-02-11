@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.practice.freelancebd.Custom.MessageAdapter;
@@ -47,6 +49,7 @@ public class ChatActivity extends AppCompatActivity {
     private MessageAdapter messageAdapter;
     private LinearLayoutManager linearLayoutManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,7 @@ public class ChatActivity extends AppCompatActivity {
         final String bidder_id = getIntent().getStringExtra("bidderId");
         String bidder_name = getIntent().getStringExtra("bidderName");
         String bidder_image = getIntent().getStringExtra("bidderImage");
+        Picasso.get().load(bidder_image).into(bidderProfileImage);
         bidderNameTV.setText(bidder_name);
         Picasso.get().load(bidder_image).into(bidderProfileImage);
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -110,10 +114,16 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     private void loadMessages(String bidder_id) {
-        rootRef.child("message").child(currentUserId).child(bidder_id).addChildEventListener(new ChildEventListener() {
+
+        DatabaseReference messageRef = rootRef.child("message").child(currentUserId).child(bidder_id);
+
+
+        messageRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
@@ -121,6 +131,9 @@ public class ChatActivity extends AppCompatActivity {
 
                 messageList.add(message);
                 messageAdapter.notifyDataSetChanged();
+
+                messageRecyclerView.scrollToPosition(messageList.size() - 1);
+
             }
 
             @Override
@@ -161,10 +174,13 @@ public class ChatActivity extends AppCompatActivity {
             messageMap.put("seen",false);
             messageMap.put("type","text");
             messageMap.put("time",ServerValue.TIMESTAMP);
+            messageMap.put("from",currentUserId);
 
             Map messageUserMap = new HashMap();
             messageUserMap.put(current_user_ref + "/" + push_key,messageMap);
             messageUserMap.put(bidder_ref + "/" + push_key, messageMap);
+
+            et_msg.setText("");
 
             rootRef.updateChildren(messageUserMap, new DatabaseReference.CompletionListener() {
                 @Override

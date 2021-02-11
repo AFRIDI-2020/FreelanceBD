@@ -112,6 +112,9 @@
         android:layout_height="0dp"
         android:padding="@dimen/_6sdp"
         app:layout_constraintBottom_toTopOf="@id/sendMesageLayout"
-        app:layout_constraintTop_toBottomOf="@id/chatActivityToolbar" />
+        app:layout_constraintTop_toBottomOf="@id/chatActivityToolbar"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
