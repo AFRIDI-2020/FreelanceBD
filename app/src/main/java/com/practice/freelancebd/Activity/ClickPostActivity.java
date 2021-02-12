@@ -162,7 +162,7 @@ public class ClickPostActivity extends AppCompatActivity {
                         String bidDay = bidDayET.getText().toString();
                         String bidDescription = bidDescriptionET.getText().toString();
 
-                        bidRef.child(postKey).child(currentUser).setValue(new Bid(bidAmount, bidDay, bidDescription, "true", bidder, bidderProfileImageLink,bidderId)).addOnCompleteListener(
+                        bidRef.child(postKey).child(currentUser).setValue(new Bid(bidAmount, bidDay, bidDescription, "true", bidder, bidderProfileImageLink,bidderId,postKey)).addOnCompleteListener(
                                 new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

@@ -2,12 +2,12 @@ package com.practice.freelancebd.ModelClasses;
 
 public class Bid {
 
-    private String bidAmount, bidDay, bidDescription, bidStatus,bidder, bidderProfileImageLink,bidderId;
+    private String bidAmount, bidDay, bidDescription, bidStatus,bidder, bidderProfileImageLink,bidderId,postKey;
 
     public Bid() {
     }
 
-    public Bid(String bidAmount, String bidDay, String bidDescription, String bidStatus, String bidder, String bidderProfileImageLink, String bidderId) {
+    public Bid(String bidAmount, String bidDay, String bidDescription, String bidStatus, String bidder, String bidderProfileImageLink, String bidderId, String postKey) {
         this.bidAmount = bidAmount;
         this.bidDay = bidDay;
         this.bidDescription = bidDescription;
@@ -15,6 +15,7 @@ public class Bid {
         this.bidder = bidder;
         this.bidderProfileImageLink = bidderProfileImageLink;
         this.bidderId = bidderId;
+        this.postKey = postKey;
     }
 
     public String getBidAmount() {
@@ -43,5 +44,9 @@ public class Bid {
 
     public String getBidderId() {
         return bidderId;
+    }
+
+    public String getPostKey() {
+        return postKey;
     }
 }
