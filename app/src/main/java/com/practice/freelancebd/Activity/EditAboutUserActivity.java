@@ -152,7 +152,7 @@ public class EditAboutUserActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             savingAlertDialog.dismiss();
                             Toast.makeText(EditAboutUserActivity.this, "profile updated!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(EditAboutUserActivity.this, AboutUserProfile.class));
+                            startActivity(new Intent(EditAboutUserActivity.this, HomeActivity.class));
                         } else {
                             Toast.makeText(EditAboutUserActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
