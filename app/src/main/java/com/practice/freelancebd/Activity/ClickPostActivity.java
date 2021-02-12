@@ -162,17 +162,29 @@ public class ClickPostActivity extends AppCompatActivity {
                         String bidDay = bidDayET.getText().toString();
                         String bidDescription = bidDescriptionET.getText().toString();
 
-                        bidRef.child(postKey).child(currentUser).setValue(new Bid(bidAmount, bidDay, bidDescription, "true", bidder, bidderProfileImageLink,bidderId,postKey)).addOnCompleteListener(
+                        final Bid bid = new Bid(bidAmount, bidDay, bidDescription,"true",bidder,bidderProfileImageLink, bidderId, postKey );
+
+                        bidRef.child(postKey).child(currentUser).setValue(bid).addOnCompleteListener(
                                 new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(ClickPostActivity.this, "You made a bid on this job!", Toast.LENGTH_SHORT).show();
-                                            dialog.dismiss();
+                                            databaseReference.child("notification").child(userID).child(postKey).child(currentUser).setValue(bid)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if(task.isSuccessful()){
+                                                                Toast.makeText(ClickPostActivity.this, "You made a bid on this post", Toast.LENGTH_SHORT).show();
+                                                                dialog.dismiss();
+                                                            }
+                                                        }
+                                                    });
                                         }
                                     }
                                 }
                         );
+
+
 
                     }
                 });
