@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.BidDetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/bidDetailActivityToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/backIcon"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_chevron_left_white_24dp" />
+
+            <TextView
+                android:id="@+id/tv_bid_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="Bid Details"
+                android:textColor="@color/whiteColor"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintBottom_toBottomOf="@id/backIcon"
+                app:layout_constraintStart_toEndOf="@id/backIcon"
+                app:layout_constraintTop_toTopOf="@id/backIcon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/job_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:text="job title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bidDetailActivityToolbar" />
+
+    <TextView
+        android:id="@+id/employer_name_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Employer: "
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="@id/job_title"
+        app:layout_constraintTop_toBottomOf="@id/job_title" />
+
+    <TextView
+        android:id="@+id/tv_employerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:text="employer_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/employer_name_label"
+        app:layout_constraintTop_toTopOf="@id/employer_name_label" />
+
+
+    <TextView
+        android:id="@+id/label_bid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:text="Bid"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/employer_name_label" />
+
+
+    <TextView
+        android:id="@+id/bidder_name_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Bidder name: "
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="@id/employer_name_label"
+        app:layout_constraintTop_toBottomOf="@id/label_bid" />
+
+    <TextView
+        android:id="@+id/tv_bidderName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:text="bidder_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bidder_name_label"
+        app:layout_constraintTop_toTopOf="@id/bidder_name_label" />
+
+
+    <TextView
+        android:id="@+id/demanded_amount_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Demanded amount: "
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="@id/bidder_name_label"
+        app:layout_constraintTop_toBottomOf="@id/bidder_name_label" />
+
+
+    <TextView
+        android:id="@+id/tv_demanded_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="000"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toEndOf="@id/demanded_amount_label"
+        app:layout_constraintTop_toTopOf="@id/demanded_amount_label" />
+
+
+    <TextView
+        android:id="@+id/taka_currency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=" Taka"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toEndOf="@id/tv_demanded_amount"
+        app:layout_constraintTop_toTopOf="@id/tv_demanded_amount" />
+
+    <TextView
+        android:id="@+id/delivery_within_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Delivery within "
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="@id/demanded_amount_label"
+        app:layout_constraintTop_toBottomOf="@id/demanded_amount_label" />
+
+
+    <TextView
+        android:id="@+id/tv_day"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="000"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toEndOf="@id/delivery_within_label"
+        app:layout_constraintTop_toTopOf="@id/delivery_within_label" />
+
+
+    <TextView
+        android:id="@+id/label_day"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_4sdp"
+        android:text="day"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toEndOf="@id/tv_day"
+        app:layout_constraintTop_toTopOf="@id/tv_day" />
+
+
+    <TextView
+        android:id="@+id/tv_see_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="See profile"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="@id/delivery_within_label"
+        app:layout_constraintTop_toBottomOf="@id/delivery_within_label" />
+
+    <Button
+        android:id="@+id/deal_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:background="@color/colorAccent"
+        android:text="Deal"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_see_profile"
+        app:layout_constraintTop_toBottomOf="@id/tv_see_profile" />
+
+
+    <Button
+        android:id="@+id/message_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/colorAccent"
+        android:text="Message"
+        android:clickable="true"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/deal_button"
+        app:layout_constraintStart_toStartOf="@id/deal_button"
+        app:layout_constraintEnd_toEndOf="@id/deal_button"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -169,7 +169,7 @@ public class ClickPostActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            databaseReference.child("notification").child(userID).child(postKey).child(currentUser).setValue(bid)
+                                            databaseReference.child("notification").child(userID).push().setValue(bid)
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {

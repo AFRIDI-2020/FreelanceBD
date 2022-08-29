@@ -24,10 +24,10 @@ import com.practice.freelancebd.R;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private TextView termsOfServiceTV,forgetPasswordTV, registerTV;
+    private TextView termsOfServiceTV, forgetPasswordTV, registerTV;
     private Button logInBtn;
     private TextInputLayout emailTextInputLayout, passwordTextInputLayout;
-    private String email,password,givenEmail, givenPassword;
+    private String email, password, givenEmail, givenPassword;
     private FirebaseAuth firebaseAuth;
     TashieLoader tashieLoader;
 
@@ -42,7 +42,7 @@ public class LogInActivity extends AppCompatActivity {
         TashieLoader tashie = new TashieLoader(
                 this, 5,
                 30, 10,
-                ContextCompat.getColor(this,R.color.whiteColor));
+                ContextCompat.getColor(this, R.color.whiteColor));
 
         tashie.setAnimDuration(500);
         tashie.setAnimDelay(100);
@@ -53,7 +53,7 @@ public class LogInActivity extends AppCompatActivity {
         termsOfServiceTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this,TermsOfServiceActivity.class));
+                startActivity(new Intent(LogInActivity.this, TermsOfServiceActivity.class));
             }
         });
 
@@ -61,11 +61,9 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(!validateEmail() | !validatePassword()){
+                if (!validateEmail() | !validatePassword()) {
                     return;
-                }
-                else
-                {
+                } else {
 
                     tashieLoader.setVisibility(View.VISIBLE);
 
@@ -93,33 +91,28 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-    private boolean validateEmail(){
+    private boolean validateEmail() {
 
         givenEmail = emailTextInputLayout.getEditText().getText().toString().trim();
 
-        if(givenEmail.isEmpty()){
+        if (givenEmail.isEmpty()) {
             emailTextInputLayout.setError("Email is required!");
             return false;
-        }
-        else
-        {
+        } else {
             emailTextInputLayout.setError(null);
             return true;
         }
 
     }
 
-    private boolean validatePassword(){
+    private boolean validatePassword() {
 
         givenPassword = passwordTextInputLayout.getEditText().getText().toString().trim();
 
-        if(givenPassword.isEmpty()){
+        if (givenPassword.isEmpty()) {
             passwordTextInputLayout.setError("Password is Required!");
             return false;
-        }
-
-        else
-        {
+        } else {
             passwordTextInputLayout.setError(null);
             return true;
         }
@@ -127,28 +120,22 @@ public class LogInActivity extends AppCompatActivity {
 
     private void signIn(String email, String password) {
 
-        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
-                    if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                    if (firebaseAuth.getCurrentUser().isEmailVerified()) {
 
-                        Intent intent = new Intent(LogInActivity.this,HomeActivity.class);
+                        Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                    }
-
-                    else
-                    {
+                    } else {
                         tashieLoader.setVisibility(View.GONE);
                         Toast.makeText(LogInActivity.this, "Please verify your email address.", Toast.LENGTH_SHORT).show();
                     }
-                }
-
-                else
-                {
+                } else {
                     tashieLoader.setVisibility(View.GONE);
                     Toast.makeText(LogInActivity.this, "Invalid email or password or try again!", Toast.LENGTH_SHORT).show();
                 }
@@ -169,6 +156,6 @@ public class LogInActivity extends AppCompatActivity {
         registerTV = findViewById(R.id.registerTV);
 
         forgetPasswordTV = findViewById(R.id.forgetPasswordTV);
-        tashieLoader =(TashieLoader)findViewById(R.id.tashieLoader);
+        tashieLoader = (TashieLoader) findViewById(R.id.tashieLoader);
     }
 }

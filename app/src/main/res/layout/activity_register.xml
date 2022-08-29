@@ -53,7 +53,7 @@
                         android:drawableLeft="@drawable/ic_person_pink_24"
                         android:drawablePadding="5dp"
                         android:inputType="text"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/black"
                         android:textSize="12sp" />
 
 
@@ -87,7 +87,7 @@
                         android:drawableLeft="@drawable/ic_email_black_24dp"
                         android:drawablePadding="5dp"
                         android:inputType="textEmailAddress"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/black"
                         android:textSize="12sp" />
 
 
@@ -118,7 +118,7 @@
                         android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
                         android:drawablePadding="5dp"
                         android:inputType="textPassword"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/black"
                         android:textSize="12sp" />
 
 
@@ -148,7 +148,7 @@
                         android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
                         android:drawablePadding="5dp"
                         android:inputType="textPassword"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/black"
                         android:textSize="12sp" />
 
 

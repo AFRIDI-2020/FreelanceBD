@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustPan">
-        <activity android:name=".Activity.ChatActivity"></activity>
+        <activity android:name=".Activity.Order"></activity>
+        <activity android:name=".Activity.BidDetailActivity" />
+        <activity android:name=".Activity.ChatActivity" />
         <activity android:name=".Activity.PersonsActivity" />
         <activity android:name=".Activity.ClickPostActivity" />
         <activity android:name=".Activity.MyPostActivity" />

@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,6 +53,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<AllUserPost>allUserPostArrayList;
 
 
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -61,6 +64,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View loading = LayoutInflater.from(getActivity()).inflate(R.layout.firebase_data_loading_progress_dialog,null);
@@ -96,7 +101,7 @@ public class HomeFragment extends Fragment {
         searchTV = view.findViewById(R.id.searchTV);
         allTV = view.findViewById(R.id.allTV);
 
-        getSearchText();
+
 
         recentPostRV = view.findViewById(R.id.recentPostRV);
         recentPostRV.setHasFixedSize(true);
@@ -107,6 +112,8 @@ public class HomeFragment extends Fragment {
 
 
         fetchAllPostFromDatabase("");
+
+        getSearchTV();
 
 
         searchTV.addTextChangedListener(new TextWatcher() {
@@ -140,8 +147,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void getSearchText() {
-
+    private void getSearchTV() {
         websiteAndITTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,10 +169,24 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        businessTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchTV.setText("Business");
+            }
+        });
+
         dataEntryTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchTV.setText("Data entry");
+            }
+        });
+
+        personalTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchTV.setText("Personal");
             }
         });
 
@@ -184,27 +204,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        businessTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchTV.setText("Business");
-            }
-        });
-
-        personalTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchTV.setText("Personal");
-            }
-        });
-
         allTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchTV.setText("");
             }
         });
+
     }
+
 
     private void fetchAllPostFromDatabase(String data) {
 

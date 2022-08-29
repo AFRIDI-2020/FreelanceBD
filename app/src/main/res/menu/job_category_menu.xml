@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/category"
+        android:title="Category"
+        android:icon="@drawable/ic_baseline_category_24"
+        app:showAsAction="always">
+
+        <menu>
+
+
+            <item android:id="@+id/websiteItMenu"
+                android:title="Website &amp; IT"/>
+
+            <item android:id="@+id/artDesignMenu"
+                android:title="Art &amp; Design"/>
+
+            <item android:id="@+id/dataEntryMenu"
+                android:title="Data Entry"/>
+
+            <item android:id="@+id/EventManagementMenu"
+                android:title="Event Management"/>
+
+            <item android:id="@+id/BusinessMenu"
+                android:title="Business"/>
+
+            <item android:id="@+id/PersonalMenu"
+                android:title="Personal"/>
+
+            <item android:id="@+id/allCategory"
+                android:title="All jobs"/>
+
+
+
+
+        </menu>
+
+
+    </item>
+
+</menu>
